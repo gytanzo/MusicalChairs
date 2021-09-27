@@ -1,0 +1,5 @@
+# From lecture example
+
+build:
+  docker:
+    web: Dockerfile
