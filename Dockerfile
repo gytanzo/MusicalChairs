@@ -1,21 +1,21 @@
-FROM python3
+FROM python:3.9
 
 # Setting home directory
-ENV HOME /MusicalChairs
+ENV HOME /root
 
 # Ensuring it's in main directory
-WORKDIR /MusicalChairs
+WORKDIR /root
 
 # Copy and install any project dependencies
 COPY package*.json ./
 
-RUN npm install
+# Copy all working files
+COPY . .
+
+RUN pip install -r requirements.txt
 
 # Get port from Heroku
 EXPOSE $PORT
-
-# Copy all working files
-COPY . .
 
 # Run container
 CMD python3 app.py $PORT
