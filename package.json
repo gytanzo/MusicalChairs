@@ -1,0 +1,25 @@
+{
+  "name": "musicalchairs",
+  "version": "1.0.0",
+  "description": "Musical Guessing Game Web App for CSE442",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gytanzo/MusicalChairs.git"
+  },
+  "author": "Rafi Mohammed, Drew Thein, Andrew Zhou, Ben Miller, Yinuo Chen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gytanzo/MusicalChairs/issues"
+  },
+  "homepage": "https://github.com/gytanzo/MusicalChairs#readme",
+  "engines": {
+    "node": "14.x"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
