@@ -347,7 +347,7 @@
 	font-size:48px;
 	letter-spacing:0;
 }
-.e6_77 { 
+.buttonAsquare {
 	background-color:rgba(96.68749898672104, 131.5162628889084, 255, 1);
 	width:700px;
 	height:100px;
@@ -359,7 +359,7 @@
 	border-bottom-left-radius:15px;
 	border-bottom-right-radius:15px;
 }
-.e6_78 { 
+.buttonAanswer {
 	color:rgba(255, 255, 255, 1);
 	width:195px;
 	height:56px;
@@ -370,8 +370,9 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
-.e6_79 { 
+.buttonAa {
 	color:rgba(255, 255, 255, 1);
 	width:44px;
 	height:56px;
@@ -382,6 +383,7 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
 .e6_92 { 
 	background-color:rgba(96.68749898672104, 131.5162628889084, 255, 1);
@@ -626,7 +628,7 @@
 	font-size:36px;
 	letter-spacing:0;
 }
-.e6_100 { 
+.score {
 	color:rgba(0, 0, 0, 1);
 	width:179px;
 	height:68px;
@@ -634,7 +636,7 @@
 	left:1141px;
 	top:197px;
 	font-family:Roboto;
-	text-align:left;
+	text-align:center;
 	font-size:58px;
 	letter-spacing:0;
 }

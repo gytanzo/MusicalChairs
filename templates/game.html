@@ -1,14 +1,16 @@
 <html lang="en">
             <head>
+                <script type="text/javascript" src="../src/game.js"></script>
+
             <meta charset="utf-8">
-          
+
             <title>Musical Chairs</title>
             <meta name="description" content="Figma htmlGenerator">
             <meta name="author" content="htmlGenerator">
             <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
             <link rel="stylesheet" href="../static/game.css">
-            
+
             <style>
               /*
                 Figma Background for illustrative/preview purposes only.
@@ -17,6 +19,7 @@
               body {background: #E5E5E5; }
             </style>
             </head>
+            <body>
 <div class=e4_16>
     <div class="e4_25"></div>
     <div class="e4_26"></div><span  class="e4_27">B</span><span  class="e4_28">bananainpajama7</span>
@@ -43,13 +46,14 @@
     <div class="e6_68"></div>
     <div class="e6_69"></div>
     <div class="e6_70"></div><span  class="e6_71">17.57</span>
-    <div class="e6_72"></div><span  class="e6_75">Musician</span><span  class="e6_74">A.</span>
-    <div class="e6_77"></div><span  class="e6_78">Musician</span><span  class="e6_79">A.</span>
-    <div class="e6_92"></div><span  class="e6_93">Musician</span><span  class="e6_94">A.</span>
+    <div class="e6_72"></div><span  class="e6_75"></span><span  class="e6_74"></span>
+    <button class="buttonAsquare" onclick="increaseScore()"></button><span  class="buttonAanswer">Musician</span><span  class="buttonAa">A.</span>
+    <div class="e6_92"></div><span  class="e6_93"></span><span  class="e6_94"></span>
     <div class="e6_95"></div><span  class="e6_96">Miracle</span><span  class="e6_97">D.</span>
-    <div class="e6_86"></div><span  class="e6_87">Musician</span><span  class="e6_88">A.</span>
+    <div class="e6_86"></div><span  class="e6_87"></span><span  class="e6_88"></span>
     <div class="e6_89"></div><span  class="e6_90">Digital Love</span><span  class="e6_91">C.</span>
-    <div class="e6_80"></div><span  class="e6_81">Musician</span><span  class="e6_82">A.</span>
+    <div class="e6_80"></div><span  class="e6_81"></span><span  class="e6_82"></span>
     <div class="e6_83"></div><span  class="e6_84">Brave Soul</span><span  class="e6_85">B.</span>
-    <div class="e6_98"></div><span  class="e6_99">3 / 10</span><span  class="e6_100">438.36</span>
+    <div class="e6_98"></div><span  class="e6_99">3 / 10</span><span id="score" class="score">0</span>
   </div>
+            </body>
