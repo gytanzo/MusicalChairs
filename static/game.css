@@ -421,7 +421,7 @@
 	font-size:48px;
 	letter-spacing:0;
 }
-.e6_95 { 
+.buttonDsquare {
 	background-color:rgba(96.68749898672104, 131.5162628889084, 255, 1);
 	width:700px;
 	height:100px;
@@ -433,7 +433,7 @@
 	border-bottom-left-radius:15px;
 	border-bottom-right-radius:15px;
 }
-.e6_96 { 
+.buttonDanswer {
 	color:rgba(255, 255, 255, 1);
 	width:158px;
 	height:56px;
@@ -444,8 +444,9 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
-.e6_97 { 
+.buttonDd {
 	color:rgba(255, 255, 255, 1);
 	width:42px;
 	height:56px;
@@ -456,6 +457,7 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
 .e6_86 { 
 	background-color:rgba(96.68749898672104, 131.5162628889084, 255, 1);
@@ -493,7 +495,7 @@
 	font-size:48px;
 	letter-spacing:0;
 }
-.e6_89 { 
+.buttonCsquare {
 	background-color:rgba(96.68749898672104, 131.5162628889084, 255, 1);
 	width:700px;
 	height:100px;
@@ -505,7 +507,7 @@
 	border-bottom-left-radius:15px;
 	border-bottom-right-radius:15px;
 }
-.e6_90 { 
+.buttonCanswer {
 	color:rgba(255, 255, 255, 1);
 	width:249px;
 	height:56px;
@@ -516,8 +518,9 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
-.e6_91 { 
+.buttonCc {
 	color:rgba(255, 255, 255, 1);
 	width:44px;
 	height:56px;
@@ -528,6 +531,7 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
 .e6_80 { 
 	background-color:rgba(96.68749898672104, 131.5162628889084, 255, 1);
@@ -565,7 +569,7 @@
 	font-size:48px;
 	letter-spacing:0;
 }
-.e6_83 { 
+.buttonBsquare {
 	background-color:rgba(96.68749898672104, 131.5162628889084, 255, 1);
 	width:700px;
 	height:100px;
@@ -577,7 +581,7 @@
 	border-bottom-left-radius:15px;
 	border-bottom-right-radius:15px;
 }
-.e6_84 { 
+.buttonBanswer {
 	color:rgba(255, 255, 255, 1);
 	width:226px;
 	height:56px;
@@ -588,8 +592,9 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
-.e6_85 { 
+.buttonBb {
 	color:rgba(255, 255, 255, 1);
 	width:43px;
 	height:56px;
@@ -600,8 +605,9 @@
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
+	pointer-events: none;
 }
-.e6_98 { 
+.scorebox {
 	background-color:rgba(238.50634664297104, 238.50634664297104, 238.50634664297104, 1);
 	width:387px;
 	height:183px;
@@ -616,15 +622,15 @@
 .6_98 { 
 	border:1px solid rgba(59.50000025331974, 59.50000025331974, 59.50000025331974, 1);
 }
-.e6_99 { 
+.questionsRemaining {
 	color:rgba(0, 0, 0, 1);
-	width:94px;
+	width:150px;
 	height:42px;
 	position:absolute;
-	left:1184px;
+	left:1160px;
 	top:130px;
 	font-family:Roboto;
-	text-align:left;
+	text-align:center;
 	font-size:36px;
 	letter-spacing:0;
 }
