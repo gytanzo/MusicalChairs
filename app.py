@@ -22,6 +22,10 @@ def gameSelection():
 def gameScreen():
     return render_template('game.html')
 
+@app.route('/profile')
+def profilePage():
+    return render_template('profile.html')
+
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
     port = sys.argv[1] if len(sys.argv) > 1 else 8000
@@ -32,7 +36,7 @@ if __name__ == "__main__":
     print(client.list_database_names())
     
     # Create test DB
-    accounts = client['accounts']
+    """accounts = client['accounts']
     col_users = accounts['passwords']
     document = {'name': 'Sample Name', 'password': 'Sample PW'}
     col_users.insert_one(document)
@@ -45,6 +49,6 @@ if __name__ == "__main__":
     # Print each Document
     for item in user:
         print(item)
-
+"""
     app.run(host='0.0.0.0', port=port)
     
