@@ -9,7 +9,7 @@ import sys
 app = Flask(__name__)
 
 # Flask delgates this to be current homescreen
-@app.route('/index.html')
+@app.route('/')
 def index():
     return render_template('index.html')
 
