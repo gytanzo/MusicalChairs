@@ -9,18 +9,22 @@ import sys
 app = Flask(__name__)
 
 # Flask delgates this to be current homescreen
-@app.route('/')
+@app.route('/index.html')
 def index():
     return render_template('index.html')
 
 # Link to selectgame.html
-@app.route('/selection')
+@app.route('/help.html')
 def gameSelection():
-    return render_template('selectgame.html')
+    return render_template('help.html')
 
 @app.route('/game.html')
 def gameScreen():
     return render_template('game.html')
+
+@app.route('/profile.html')
+def gameProfile():
+    return render_template('profile.html')
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
