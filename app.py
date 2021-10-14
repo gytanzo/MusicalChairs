@@ -18,7 +18,7 @@ def index():
 def gameSelection():
     return render_template('selectgame.html')
 
-@app.route('/game')
+@app.route('/game.html')
 def gameScreen():
     return render_template('game.html')
 
