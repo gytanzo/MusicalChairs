@@ -22,6 +22,10 @@ def gameSelection():
 def gameScreen():
     return render_template('game.html')
 
+@app.route('/game2.html')
+def gameSelect():
+    return render_template('game2.html')
+
 @app.route('/profile.html')
 def gameProfile():
     return render_template('profile.html')
