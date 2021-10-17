@@ -16,6 +16,8 @@ function correct(){
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
     }
+
+    setAnswers();
 }
 
 function wrong(){
@@ -28,4 +30,6 @@ function wrong(){
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
     }
+
+    setAnswers();
 }
