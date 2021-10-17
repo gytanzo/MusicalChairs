@@ -29,3 +29,15 @@ function wrong(){
         currentquestion += 1
     }
 }
+
+function countdownTime() {
+    var time = 20;
+    var x = setInterval(function() {
+        document.getElementById("countdown").innerHTML = time;
+        time -= 1;
+        if(time == 0) {
+            clearInterval(x);
+            document.getElementById("countdown").innerHTML = "FAILED";
+        }
+    }, 1000);
+}
