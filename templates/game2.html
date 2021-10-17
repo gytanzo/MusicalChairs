@@ -23,10 +23,10 @@
   </style>
 
   <script type="text/javascript">
-    var correct;
-    var incorrect1;
-    var incorrect2; 
-    var incorrect3;
+    var A;
+    var B;
+    var C; 
+    var D;
 
     // Source: https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
     function randomIntFromInterval(min, max) { // min and max included 
@@ -34,17 +34,129 @@
     }
 
     function setAnswers() {
-      var row = randomIntFromInterval(2, 40); // Grab the CSV row the player will be asked. 
+      var row = randomIntFromInterval(2, 39); // Grab the CSV row the player will be asked. 
+      console.log(row) // This is just used for error-checking. 
       
       fetch("../static/songs.json")
       .then(response => {
         return response.json();
       })
       .then(data => {
-        document.getElementById('correct').innerHTML = data[row].Correct;
-        document.getElementById('incorrect1').innerHTML = data[row]["Incorrect 1"]
-        document.getElementById('incorrect2').innerHTML = data[row]["Incorrect 2"]
-        document.getElementById('incorrect3').innerHTML = data[row]["Incorrect 3"]
+        // Randomly generate a number between 0 and 3. 
+        // If the first number is two, then A = Incorrect 2. 
+
+        // These values will be used to make sure that we don't make two buttons the same answer.
+        var assignedCorrect = false;
+        var assignedIncorrect1 = false;
+        var assignedIncorrect2 = false;
+        var assignedIncorrect3 = false;
+        var completeButtons = []; // This array will house the button IDs (0, 1, 2, 3) for the buttons we've added. So if A and C are done, this will be [0, 2]. 
+
+        let i = 0; // This will count how many times we have added a button. 
+        while (i != 4){
+          var value = randomIntFromInterval(0, 3); // Correct = 0, Incorrect1 = 1, Incorrect2 = 2, Incorrect3 = 3
+          if (completeButtons.includes(value)){
+            ; // Do nothing, get a new value
+          }
+
+          else {
+            if (assignedCorrect == false){
+              if (value == 0){
+                document.getElementById('A').innerHTML = data[row].Correct;
+                completeButtons.push(0);
+              }
+
+              else if (value == 1){
+                document.getElementById('B').innerHTML = data[row].Correct;
+                completeButtons.push(1);
+              }
+
+              else if (value == 2){
+                document.getElementById('C').innerHTML = data[row].Correct;
+                completeButtons.push(2);
+              }
+              else if (value == 3){
+                document.getElementById('D').innerHTML = data[row].Correct;
+                completeButtons.push(3);
+              }
+              
+              assignedCorrect = true;
+              i++;
+            }
+            
+            else if (assignedIncorrect1 == false){
+              if (value == 0){
+                document.getElementById('A').innerHTML = data[row]["Incorrect 1"];
+                completeButtons.push(0);
+              }
+
+              else if (value == 1){
+                document.getElementById('B').innerHTML = data[row]["Incorrect 1"];
+                completeButtons.push(1);
+              }
+
+              else if (value == 2){
+                document.getElementById('C').innerHTML = data[row]["Incorrect 1"];
+                completeButtons.push(2);
+              }
+              else if (value == 3){
+                document.getElementById('D').innerHTML = data[row]["Incorrect 1"];
+                completeButtons.push(3);
+              }
+
+              assignedIncorrect1 = true;
+              i++;
+            }
+
+            else if (assignedIncorrect2 == false){
+              if (value == 0){
+                document.getElementById('A').innerHTML = data[row]["Incorrect 2"];
+                completeButtons.push(0);
+              }
+
+              else if (value == 1){
+                document.getElementById('B').innerHTML = data[row]["Incorrect 2"];
+                completeButtons.push(1);
+              }
+
+              else if (value == 2){
+                document.getElementById('C').innerHTML = data[row]["Incorrect 2"];
+                completeButtons.push(2);
+              }
+              else if (value == 3){
+                document.getElementById('D').innerHTML = data[row]["Incorrect 2"];
+                completeButtons.push(3);
+              }
+
+              assignedIncorrect2 = true;
+              i++;
+            }
+
+            else if (assignedIncorrect3 == false){
+              if (value == 0){
+                document.getElementById('A').innerHTML = data[row]["Incorrect 3"];
+                completeButtons.push(0);
+              }
+
+              else if (value == 1){
+                document.getElementById('B').innerHTML = data[row]["Incorrect 3"];
+                completeButtons.push(1);
+              }
+
+              else if (value == 2){
+                document.getElementById('C').innerHTML = data[row]["Incorrect 3"];
+                completeButtons.push(2);
+              }
+              else if (value == 3){
+                document.getElementById('D').innerHTML = data[row]["Incorrect 3"];
+                completeButtons.push(3);
+              }
+
+              assignedIncorrect3 = true;
+              i++;
+            }
+          }
+        }
       })
     }
   </script>
@@ -90,19 +202,19 @@
     <span id="score" class="score">0</span>
 
     <button class="buttonAsquare" onclick="correct()"></button>
-    <span class="buttonAanswer" span style="font-size: 200%"><span id="correct"></span></span>
+    <span class="buttonAanswer" span style="font-size: 200%"><span id="A"></span></span>
     <span class="buttonAa">A.</span>
 
     <button class="buttonBsquare" onclick="wrong()"></button>
-    <span class="buttonBanswer" span style="font-size: 200%"><span id="incorrect1"></span></span>
+    <span class="buttonBanswer" span style="font-size: 200%"><span id="B"></span></span>
     <span class="buttonBb">B.</span>
 
     <button class="buttonCsquare" onclick="wrong()"></button>
-    <span class="buttonCanswer" span style="font-size: 200%"><span id="incorrect2"></span></span>
+    <span class="buttonCanswer" span style="font-size: 200%"><span id="C"></span></span>
     <span class="buttonCc">C.</span>
 
     <button class="buttonDsquare" onclick="wrong()"></button>
-    <span class="buttonDanswer" span style="font-size: 200%"><span id="incorrect3"></span></span>
+    <span class="buttonDanswer" span style="font-size: 200%"><span id="D"></span></span>
     <span class="buttonDd">D.</span>
 
     <script>
