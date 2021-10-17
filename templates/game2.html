@@ -21,19 +21,37 @@
       background: #E5E5E5;
     }
   </style>
+
+  <script type="text/javascript">
+    var correct;
+    var incorrect1;
+    var incorrect2; 
+    var incorrect3;
+
+    // Source: https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+    function randomIntFromInterval(min, max) { // min and max included 
+      return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    function setAnswers() {
+      var row = randomIntFromInterval(2, 40); // Grab the CSV row the player will be asked. 
+      
+      fetch("../static/songs.json")
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        document.getElementById('correct').innerHTML = data[row].Correct;
+        document.getElementById('incorrect1').innerHTML = data[row]["Incorrect 1"]
+        document.getElementById('incorrect2').innerHTML = data[row]["Incorrect 2"]
+        document.getElementById('incorrect3').innerHTML = data[row]["Incorrect 3"]
+      })
+    }
+  </script>
+
 </head>
 
 <body>
-  <audio src="https://p.scdn.co/mp3-preview/84a4541a805a031dad534defcafe8ab3797ad9d3?cid=774b29d4f13844c495f206cafdad9c86" id="my_audio" loop="loop"></audio>
-  <script type="text/javascript">
-    function playSong () {
-      var audio = document.getElementById("my_audio");
-      audio.load();
-      audio.play();
-      audio.loop = false;
-    };
-    window.onload = setTimeout(playSong, 3000)
-  </script>
 
   <div class=e4_16>
     <div class="e4_25"></div>
@@ -72,20 +90,24 @@
     <span id="score" class="score">0</span>
 
     <button class="buttonAsquare" onclick="correct()"></button>
-    <span class="buttonAanswer">Musician</span>
+    <span class="buttonAanswer" span style="font-size: 200%"><span id="correct"></span></span>
     <span class="buttonAa">A.</span>
 
     <button class="buttonBsquare" onclick="wrong()"></button>
-    <span class="buttonBanswer">Brave Soul</span>
+    <span class="buttonBanswer" span style="font-size: 200%"><span id="incorrect1"></span></span>
     <span class="buttonBb">B.</span>
 
     <button class="buttonCsquare" onclick="wrong()"></button>
-    <span class="buttonCanswer">Digital Love</span>
+    <span class="buttonCanswer" span style="font-size: 200%"><span id="incorrect2"></span></span>
     <span class="buttonCc">C.</span>
 
     <button class="buttonDsquare" onclick="wrong()"></button>
-    <span class="buttonDanswer">Miracle</span>
+    <span class="buttonDanswer" span style="font-size: 200%"><span id="incorrect3"></span></span>
     <span class="buttonDd">D.</span>
+
+    <script>
+      window.onload = setAnswers();
+    </script>
 
   </div>
 </body>
