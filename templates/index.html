@@ -1,98 +1,101 @@
 <!DOCTYPE html>>
 <html>
-    <head>
-        <!-- <link rel="stylesheet" href="../static/menu.css"> -->
-        <style>
-            body { 
-                margin: 0; 
-                background-color: rgb(218, 218, 218);
-            }
 
-            .navbar {
-                overflow: hidden;
-                background-color: rgb(90, 90, 90);
-                position: fixed;
-                top: 0;
-                width: 100%;
-            }
+<head>
+    <!-- <link rel="stylesheet" href="../static/menu.css"> -->
+    <style>
+        body {
+            margin: 0;
+            background-color: rgb(218, 218, 218);
+        }
 
-            .navbar a {
-                float: left;
-                display: block;
-                color: #ffffff;
-                text-align: center;
-                padding: 14px 16px;
-                font-size: 17px;
-            }
+        .navbar {
+            overflow: hidden;
+            background-color: rgb(90, 90, 90);
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
 
-            .navbar a:hover {
-                background: rgb(218, 218, 218);
-                color: black;
-            }
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 17px;
+        }
 
-            .logo {
-                padding: 16px;
-                margin-top: 30px;
-                display: flex;
-                justify-content: center;
-            }
+        .navbar a:hover {
+            background: rgb(218, 218, 218);
+            color: black;
+        }
 
-            .main {
-                padding: 16px;
-                margin-top: 300px;
-            }
+        .logo {
+            padding: 16px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
 
-            .button {
-                border: none;
-                display: block;
-                font-size: 36px;
-                margin: 0 auto;
-                cursor: pointer;
-                transition-duration: 0.4s;
-                border-radius: 10px;
-                height: 100px;
-                width: 250px;
-            }
+        .main {
+            padding: 16px;
+            margin-top: 300px;
+        }
 
-            .help_button {
-                background-color: rgb(0, 162, 255);
-                color: white;
-            }
+        .button {
+            border: none;
+            display: block;
+            font-size: 36px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition-duration: 0.4s;
+            border-radius: 10px;
+            height: 100px;
+            width: 250px;
+        }
 
-            .help_button:hover {
-                background-color: rgb(49, 179, 255);
-                color: white;
-            }
+        .help_button {
+            background-color: rgb(0, 162, 255);
+            color: white;
+        }
 
-            .play_button {
-                background-color: rgb(0, 162, 255);
-                color: white;
-            }
+        .help_button:hover {
+            background-color: rgb(49, 179, 255);
+            color: white;
+        }
 
-            .play_button:hover {
-                background-color: rgb(49, 179, 255);
-                color: white;
-            }
-        </style>
-    </head>
+        .play_button {
+            background-color: rgba(0, 162, 255);
+            color: white;
+        }
 
-    <body>
-        <div class="navbar">
-            <a href="index.html" style="text-decoration: none;">Home</a>
-            <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
-        </div>
-        <div class="logo">
-            <img src="../static/images/logo.jpg" alt="Musical Chairs Logo" style="border-radius: 50%; width: 300px; position: absolute; margin: 10px;">
-        </div>
-        <div class="main">
-            <a href="help.html" style="text-decoration: none;">
-                <button class="button help_button">How to Play</button>
-            </a>
-            <br>
-            <a href="game.html" style="text-decoration: none;"> <!-- game2.html is the other page for the game screen that is not from Figma -->
-                <button class="button play_button">Play Game</button>
-            </a>
-        </div>
-    </body>
-    
+        .play_button:hover {
+            background-color: rgb(49, 179, 255);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html" style="text-decoration: none;">Home</a>
+        <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
+    </div>
+    <div class="logo">
+        <img src="../images/logo.jpg" alt="Musical Chairs Logo"
+            style="border-radius: 50%; width: 300px; position: absolute; margin: 10px;">
+    </div>
+    <div class="main">
+        <a href="help.html" style="text-decoration: none;">
+            <button class="button help_button">How to Play</button>
+        </a>
+        <br>
+        <a href="game.html" style="text-decoration: none;">
+            <!-- game2.html is the other page for the game screen that is not from Figma -->
+            <button class="button play_button">Play Game</button>
+        </a>
+    </div>
+</body>
+
 </html>
