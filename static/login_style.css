@@ -15,6 +15,17 @@ body
         border-radius: 15px ;  
           
 }  
+
+.signup{  
+    width: 382px;  
+    overflow: hidden;  
+    margin: auto;  
+    margin: 20 0 0 450px;  
+    padding: 80px;  
+    background: #23463f;  
+    border-radius: 15px ; 
+} 
+
 h2{  
     text-align: center;  
     color: #277582;  
@@ -48,5 +59,12 @@ label{
     color: blue;  
   
   
-}  
+} 
+
+#a{
+    list-style-type: none;
+    margin: 7;
+    padding-left: 17px; 
+    color: pink
+  }
  

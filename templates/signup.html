@@ -5,9 +5,9 @@
     <link rel="stylesheet" type="text/css" href="static\login_style.css">    
 </head>    
 <body>    
-    <h2>Login Page</h2><br>    
-    <div class="login">    
-    <form id="login" method="post" action="{{ url_for("login")}}">    
+    <h2>Signup Page</h2><br>    
+    <div class="signup">    
+    <form id="signup" method="post" action="{{ url_for("signup")}}">    
         <label><b>User Name     
         </b>    
         </label>    
@@ -18,12 +18,9 @@
         </label>    
         <input type="Password" name="Pass" id="Pass" placeholder="Password">    
         <br><br>    
-        <button type="submit" name="log" id="log">Login </button>      
+        <button type="submit" name="log" id="log">Signup </button>      
         <br><br>    
-        <a href="{{ url_for('signup') }}" name="a" id="a" class="navbar-item">
-            Sign Up</a> 
-                         
-        <br><br>    
+           
            
         <br><br>    
           

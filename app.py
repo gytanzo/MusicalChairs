@@ -2,16 +2,20 @@
 # https://flask.palletsprojects.com/en/2.0.x/quickstart/
 import pymongo
 from pymongo import MongoClient
-from flask import Flask
+from flask import Flask, request
 from flask import render_template, render_template_string
 import sys
 
 app = Flask(__name__)
 
 # Flask delgates this to be current homescreen
-@app.route('/')
-def index():
-    return render_template('index.html')
+@app.route('/', methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("Uname")
+        password = request.form.get("Pass")
+        return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/help.html')
 def gameSelection():
@@ -34,15 +38,21 @@ def gameMenu():
     return render_template('index.html')
 
  #   
-@app.route('/login')
-def login():
+# @app.route('/login')
+# def login():
     
-    return render_template('login.html')
+#     return render_template('login.html')
 
-@app.route('/signup')
+@app.route('/signup', methods=["GET", "POST"])
 def signup():
-    
-    return "sign up"
+    if request.method == "POST":
+        username = request.form.get("Uname")
+        password = request.form.get("Pass")
+        #store to databse if Uname not existing
+
+
+        return render_template('login.html')
+    return render_template('signup.html')
 
 @app.route('/logout')
 def logout():
