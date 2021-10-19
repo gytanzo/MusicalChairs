@@ -37,7 +37,7 @@ function wrong(answerKey){
 
 var x;
 function countdownTime() {
-    var time = 20;
+    var time = 30;
     clearInterval(x);
     x = setInterval(function() {
         document.getElementById("countdown").innerHTML = time;
