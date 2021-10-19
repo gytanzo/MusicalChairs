@@ -62,6 +62,7 @@ if __name__ == "__main__":
     print(os.environ.get("DATABASE_URL"))
     print("all environ vars:\n")
     print(os.environ)
+    sys.stdout.flush() # This has to follow print statements for print statements to work.
 
     app.run(host='0.0.0.0', port=port)
     
