@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from flask import Flask
 from flask import render_template, render_template_string
 import sys
+import os
 
 app = Flask(__name__)
 
@@ -56,6 +57,8 @@ if __name__ == "__main__":
     # Print each Document
     #for item in user:
     #    print(item)
+
+    print(os.environ.get("DATABASE_URL"))
 
     app.run(host='0.0.0.0', port=port)
     
