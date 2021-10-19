@@ -58,7 +58,10 @@ if __name__ == "__main__":
     #for item in user:
     #    print(item)
 
+    print("dburl:\n")
     print(os.environ.get("DATABASE_URL"))
+    print("all environ vars:\n")
+    print(os.environ)
 
     app.run(host='0.0.0.0', port=port)
     
