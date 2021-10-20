@@ -7,6 +7,15 @@
 <body>    
     <h2>Signup Page</h2><br>    
     <div class="signup">    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <form id="signup" method="post" action="{{ url_for("signup")}}">    
         <label><b>User Name     
         </b>    

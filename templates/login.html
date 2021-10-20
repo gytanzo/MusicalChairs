@@ -7,6 +7,15 @@
 <body>    
     <h2>Login Page</h2><br>    
     <div class="login">    
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
     <form id="login" method="post" action="{{ url_for("login")}}">    
         <label><b>User Name     
         </b>    
