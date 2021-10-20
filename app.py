@@ -34,6 +34,10 @@ def gameProfile():
 def gameMenu():
     return render_template('index.html')
 
+@app.route('/profile')
+def profilePage():
+    return render_template('profile.html')
+
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
     port = sys.argv[1] if len(sys.argv) > 1 else 8000
