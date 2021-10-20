@@ -10,8 +10,9 @@ import bcrypt
 
 app = Flask(__name__)
 #os.environ.get("DATABASE_URL")
-
-db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
+app.secret_key = 'supersecretkey'
+# app.config.update(SECRET_KEY=app.secret_key)
+db = pymongo.MongoClient("mongodb+srv://Admin:6ek9T4OusBWEWu1G@musicalchairs.3wxqw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
 print(db)
 accounts = db.accounts.passwords
 
@@ -27,7 +28,8 @@ def login():
         if bcrypt.checkpw(password, hashed):
             return redirect('index.html')
         else:
-            return redirect('/')
+            flash('wrong username or password.')
+            render_template('login.html')
     return render_template('login.html')
         
 
@@ -72,8 +74,8 @@ def signup():
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
             accounts.insert({'name': username, 'password': hashed})
             return redirect('/')
-        # else:
-        #     flash("Username already exists")
+        else:
+            flash("Username already exists")
     return render_template('signup.html')
 
 @app.route('/logout')
@@ -93,7 +95,6 @@ if __name__ == "__main__":
     # print(os.environ)
     # sys.stdout.flush()
     print(db.list_database_names())
-    app.secret_key = 'supersecretkey'
-
+    
     app.run(host='0.0.0.0', port=port)
     
