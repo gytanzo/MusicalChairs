@@ -11,8 +11,8 @@ import bcrypt
 app = Flask(__name__)
 #os.environ.get("DATABASE_URL")
 app.secret_key = 'supersecretkey'
-# app.config.update(SECRET_KEY=app.secret_key)
-db = pymongo.MongoClient("mongodb+srv://Admin:6ek9T4OusBWEWu1G@musicalchairs.3wxqw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
+
+db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
 print(db)
 accounts = db.accounts.passwords
 
