@@ -19,6 +19,8 @@ accounts = db.accounts.passwords
 # Flask delgates this to be current homescreen
 @app.route('/', methods=["GET", "POST"])
 def login():
+    if 'username' in session:
+        return redirect('index.html')
     if request.method == "POST":
         username = request.form.get("Uname")
         password = request.form.get("Pass").encode('utf-8')
@@ -26,6 +28,7 @@ def login():
         print("printing hashed password")
         print(hashed)
         if bcrypt.checkpw(password, hashed):
+            session['username'] = username
             return redirect('index.html')
         else:
             flash('wrong username or password.')
@@ -41,7 +44,9 @@ def gameSelection():
 
 @app.route('/playgame.html')
 def gameGame():
-    return render_template('playgame.html')
+    if 'username' in session:
+        return render_template('playgame.html')
+    return redirect('/')
 
 @app.route('/game2.html')
 def gameSelect():
@@ -49,11 +54,15 @@ def gameSelect():
 
 @app.route('/profile.html')
 def gameProfile():
-    return render_template('profile.html')
+    if 'username' in session:
+        return render_template('profile.html')
+    return redirect('/')
 
 @app.route('/index.html')
 def gameMenu():
-    return render_template('index.html')
+    if 'username' in session:
+        return render_template('index.html')
+    return redirect('/')
 
  #   
 # @app.route('/login')
@@ -61,8 +70,10 @@ def gameMenu():
     
 #     return render_template('login.html')
 
-@app.route('/signup', methods=["GET", "POST"])
+@app.route('/signup.html', methods=["GET", "POST"])
 def signup():
+    if 'username' in session:
+        return redirect('index.html')
     if request.method == "POST":
         username = request.form.get("Uname")
         password = request.form.get("Pass")
@@ -73,6 +84,7 @@ def signup():
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
             accounts.insert({'name': username, 'password': hashed})
+            session['username'] = username
             return redirect('/')
         else:
             flash("Username already exists")
@@ -80,8 +92,10 @@ def signup():
 
 @app.route('/logout')
 def logout():
-    
-    return "logout"
+    if 'username' in session:
+        session.pop('username')
+        return redirect('/')
+    return redirect('index.html')
 
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
