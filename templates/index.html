@@ -1,25 +1,101 @@
-<html lang="en">
-          <head>
-            <meta charset="utf-8">
-          
-            <title>Html Generated</title>
-            <meta name="description" content="Figma htmlGenerator">
-            <meta name="author" content="htmlGenerator">
-            <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+<!DOCTYPE html>>
+<html>
 
-            <link rel="stylesheet" href="static/styles.css">
-            
-            <style>
-              /*
-                Figma Background for illustrative/preview purposes only.
-                You can remove this style tag with no consequence
-              */
-              body {background: #E5E5E5; }
-            </style>
-          
-          </head>
-          
-          <body>
-            <div class=e1_2><div  class="e3_3"></div><div  class="e3_4"></div><div  class="e4_2"></div><div  class="e4_3"></div><div  class="e4_4"></div><span  class="e4_5">B</span><span  class="e4_6">bananainpajama7</span><div  class="e4_8"></div><div  class="e4_9"></div><div  class="e4_10"></div><div  class="e4_11"></div><div  class="e4_12"></div><a href="selection" class="e4_14">Play</a><span  class="e4_13">How to Play</span></div>
-          </body>
-          </html>
+<head>
+    <!-- <link rel="stylesheet" href="../static/menu.css"> -->
+    <style>
+        body {
+            margin: 0;
+            background-color: rgb(218, 218, 218);
+        }
+
+        .navbar {
+            overflow: hidden;
+            background-color: rgb(90, 90, 90);
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #ffffff;
+            text-align: center;
+            padding: 14px 16px;
+            font-size: 17px;
+        }
+
+        .navbar a:hover {
+            background: rgb(218, 218, 218);
+            color: black;
+        }
+
+        .logo {
+            padding: 16px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main {
+            padding: 16px;
+            margin-top: 300px;
+        }
+
+        .button {
+            border: none;
+            display: block;
+            font-size: 36px;
+            margin: 0 auto;
+            cursor: pointer;
+            transition-duration: 0.4s;
+            border-radius: 10px;
+            height: 100px;
+            width: 250px;
+        }
+
+        .help_button {
+            background-color: rgb(0, 162, 255);
+            color: white;
+        }
+
+        .help_button:hover {
+            background-color: rgb(49, 179, 255);
+            color: white;
+        }
+
+        .play_button {
+            background-color: rgba(0, 162, 255);
+            color: white;
+        }
+
+        .play_button:hover {
+            background-color: rgb(49, 179, 255);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html" style="text-decoration: none;">Home</a>
+        <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
+    </div>
+    <div class="logo">
+        <img src="../static/images/logo.jpg" alt="Musical Chairs Logo"
+            style="border-radius: 50%; width: 300px; position: absolute; margin: 10px;">
+    </div>
+    <div class="main">
+        <a href="help.html" style="text-decoration: none;">
+            <button class="button help_button">How to Play</button>
+        </a>
+        <br>
+        <a href="playgame.html" style="text-decoration: none;">
+            <!-- game2.html is the other page for the game screen that is not from Figma -->
+            <button class="button play_button">Play Game</button>
+        </a>
+    </div>
+</body>
+
+</html>

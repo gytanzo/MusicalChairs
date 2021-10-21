@@ -1,0 +1,84 @@
+<!DOCTYPE html>>
+<html>
+    <head>
+        <link rel="stylesheet" href="../static/styles.css">
+        <style>
+            body { 
+                margin: 0; 
+                background-color: rgb(218, 218, 218);
+            }
+
+            .navbar {
+                overflow: hidden;
+                background-color: rgb(90, 90, 90);
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+
+            .navbar a {
+                float: left;
+                display: block;
+                color: #ffffff;
+                text-align: center;
+                padding: 14px 16px;
+                font-size: 17px;
+            }
+
+            .navbar a:hover {
+                background: rgb(218, 218, 218);
+                color: black;
+            }
+
+            .main {
+                padding: 16px;
+                margin-top: 30px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="index.html" style="text-decoration: none;">Home</a>
+            <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
+        </div>
+        <div class="main"></div>
+        <div class="account_box"></div>
+        <div class="account_information_box"></div>
+            <span  class="account_info_text">Information</span>
+            <span  class="account_info_name">Account name:
+            <br>
+            {{session.username}}</span>
+            <!--<span  class="account_info_email">Account Email: SandyGamer@gmail.com</span> -->
+        <!-- To be Determined for usage. For now, we will just comment it out.-->
+        <!--<div class="linkbox"></div>
+            <span  class="link_text">LINK ACCOUNT</span>
+            -->
+        <div class="spotlogo"></div>
+        <div class="stats_box"></div>
+        <div class="statistics"></div>
+            <span  class="statstext">Statistics</span>
+        <div class="scorebox"></div>
+        <a href="/logout" style="text-decoration: none;">
+        <div class="logbox"></div>
+            <span class="edit_logtext">LOGOUT</span>
+        </a>
+        <div class="matchbox"></div>
+            <span  class="hiscore_text">Highest Score:</span>
+            <span  class="hiscore">10</span>
+        <div class="matchtext"></div>
+            <span  class="match_text">Match History</span>
+        <div class="prevscores"></div>
+        <span  class="e11_77">Game 1</span>
+        <span  class="e11_78">Game 3</span>
+        <span  class="e11_79">Game 4</span>
+        <span  class="e11_80">Game 2</span>
+        <span  class="e11_81">Game 5</span>
+        <span  class="e11_88">10</span>
+        <span  class="e11_89">8</span>
+        <span  class="e11_90">7</span>
+        <span  class="e11_91">9</span>
+        <span  class="e11_92">6</span>
+    </body>
+    
+</html>
