@@ -319,15 +319,15 @@
 
     <body>
         <script> 
-            
+            window.onload = countdownTime();
         </script>
         <div class="navbar">
             <a href="index.html" style="text-decoration: none;">Home</a>
             <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
         </div>
         <div class="section">
-            <button class="timer" style="float: left;" onclick="countdownTime(); startGame();">
-                <p id="countdown">Play</p>
+            <button class="timer" style="float: left;">
+                <p id="countdown"></p>
             </button>
             <div class="scorebox" style="float: right;">
                 <span id="questionsRemaining" class="questionsRemaining">1 / 10</span>
@@ -357,6 +357,9 @@
                 <span class="question_box">D.</span>
                 <span class="question_box" id="songname1"><span id="D"></span></span>
             </button>
+            <audio id="my_audio" loop="loop">
+                <source id="audioSource" src=""></source>
+            </audio>
             <script>
                 let answerKey;
                 window.onload = function () {
