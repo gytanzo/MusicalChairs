@@ -2,8 +2,56 @@ var score = 0
 var currentquestion = 1
 var lastquestion = 10
 
-function correct(answerKey){
-    console.log(answerKey)
+function pressedA(answerKey){
+    var value = answerKey[0];
+
+    if (value == 0) {
+        return correct();
+    }
+
+    else {
+        return wrong();
+    }
+}
+
+function pressedB(answerKey){
+    var value = answerKey[1];
+
+    if (value == 0) {
+        return correct();
+    }
+
+    else {
+        return wrong();
+    }
+}
+
+function pressedC(answerKey){
+    var value = answerKey[2];
+
+    if (value == 0) {
+        return correct();
+    }
+
+    else {
+        return wrong();
+    }
+}
+
+function pressedD(answerKey){
+    var value = answerKey[3];
+
+    if (value == 0) {
+        return correct();
+    }
+
+    else {
+        return wrong();
+    }
+}
+
+function correct(){
+    let answerKey;
     if(currentquestion < lastquestion) {
         score += 1
         document.getElementById("score").innerHTML = score;
@@ -12,6 +60,7 @@ function correct(answerKey){
         document.getElementById("questionsRemaining").innerHTML = currentquestion + " / " + lastquestion;
 
         answerKey = setAnswers();
+        return answerKey;
     }
 
     else if(currentquestion === lastquestion){
@@ -21,13 +70,14 @@ function correct(answerKey){
     }
 }
 
-function wrong(answerKey){
-    console.log(answerKey)
+function wrong(){
+    let answerKey;
     if(currentquestion < lastquestion) {
         currentquestion += 1
         document.getElementById("questionsRemaining").innerHTML = currentquestion + " / " + lastquestion;
 
         answerKey = setAnswers();
+        return answerKey;
     }
     else if(currentquestion === lastquestion){
         document.getElementById("score").innerHTML = score;
