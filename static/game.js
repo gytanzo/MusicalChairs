@@ -1,66 +1,29 @@
 var score = 0;
 var currentquestion = 1;
 var lastquestion = 10;
-var time = 30;
 
 function pressedA(answerKey) {
-    if (answerKey == undefined) return;
-
     var value = answerKey[0];
-    time = 30;
-
-    if (value == 0) {
-        return correct();
-    }
-
-    else {
-        return wrong();
-    }
+    if (value == 0) return correct();
+    else return wrong();
 }
 
 function pressedB(answerKey) {
-    if (answerKey == undefined) return;
-
     var value = answerKey[1];
-    time = 30;
-
-    if (value == 0) {
-        return correct();
-    }
-
-    else {
-        return wrong();
-    }
+    if (value == 0) return correct();
+    else return wrong();
 }
 
 function pressedC(answerKey) {
-    if (answerKey == undefined) return;
-    
     var value = answerKey[2];
-    time = 30;
-
-    if (value == 0) {
-        return correct();
-    }
-
-    else {
-        return wrong();
-    }
+    if (value == 0) return correct();
+    else return wrong();
 }
 
 function pressedD(answerKey) {
-    if (answerKey == undefined) return;
-
     var value = answerKey[3];
-    time = 30;
-
-    if (value == 0) {
-        return correct();
-    }
-
-    else {
-        return wrong();
-    }
+    if (value == 0) return correct();
+    else return wrong();
 }
 
 function correct() {
@@ -79,7 +42,6 @@ function correct() {
     else if (currentquestion === lastquestion) {
         score = calculateScore(score);
         document.getElementById("score").innerHTML = score;
-        document.getElementById("countdown").innerHTML = "DONE";
         currentquestion += 1
     }
 }
@@ -95,14 +57,19 @@ function wrong() {
     }
     else if (currentquestion === lastquestion) {
         document.getElementById("score").innerHTML = score;
-        document.getElementById("countdown").innerHTML = "DONE";
         currentquestion += 1
     }
 }
 
 var x;
 function countdownTime() {
-    time = 30;
+    if (currentquestion == 11){ // If the user has answered all ten questions stop resetting the timer.
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "DONE";
+        return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
+    }
+
+    var time = 30;
     clearInterval(x);
     x = setInterval(function () {
         document.getElementById("countdown").innerHTML = time;
@@ -110,18 +77,16 @@ function countdownTime() {
         if (time == 0) {
             clearInterval(x);
             document.getElementById("countdown").innerHTML = "FAILED";
-
         }
     }, 1000);
 }
 
 function calculateScore(prevScore) {
-    // Score = 1e^(.1535t), where t = number of seconds remaining
+    // Calculated Score = 1*e^(.1535t), where t = number of seconds remaining
     var time = parseInt(document.getElementById("countdown").innerHTML);
-    var a = .1535*time
-    var b = Math.round(1*Math.exp(a));
+    var a = .1535 * time // .1535t
+    var b = Math.round(1 * Math.exp(a)); // 1*e^.1535t
     var newScore = prevScore + b; // prevScore + 1e^.1535t
-    console.log("time =", time, ", a =", a, ", b =", b, ", newScore =", newScore);
     return newScore;
 }
 
@@ -162,8 +127,6 @@ function setAnswers() {
     var assignedIncorrect2 = false;
     var assignedIncorrect3 = false;
     var completeButtons = [-1, -1, -1, -1]; // This array will house the button IDs (0, 1, 2, 3) for the buttons we've added. So if A and C are done, this will be [0, 2]. 
-
-    var audio_src; // We need to save the audio source file. 
 
     fetch("../static/songs.json")
         .then(response => {
