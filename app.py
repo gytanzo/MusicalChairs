@@ -29,6 +29,10 @@ def login():
     if request.method == "POST":
         username = request.form.get("Uname")
         password = request.form.get("Pass").encode('utf-8')
+        # Find if account exists
+        if not accounts.find_one({'name': username}):
+            flash('wrong username or password')
+            return render_template('login.html')
         hashed = accounts.find( {'name': username})[0]['password']
         print("printing hashed password")
         print(hashed)
@@ -69,8 +73,10 @@ def signup():
     if request.method == "POST":
         username = request.form.get("Uname")
         password = request.form.get("Pass")
+        if username == '' or password == '':
+            flash("Invalid credentials!")
+            return render_template('signup.html')
         #store to databse if Uname not existing
-        
         exists = accounts.find_one({'name': username})
         if not exists:
             # Use BCrypt to encrypt password, then insert into DB
