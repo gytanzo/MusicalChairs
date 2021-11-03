@@ -4,6 +4,7 @@ import pymongo
 from pymongo import MongoClient
 from flask import Flask, request, redirect, flash, session
 from flask import render_template, render_template_string
+from datetime import date, datetime
 import os
 import sys
 import bcrypt
@@ -108,6 +109,22 @@ def logout():
 def storeScore(score):
     score = json.loads(score)
     print(score)
+    colScores = db.accounts.scores
+    curDate = datetime.now().strftime("%m/%d/%Y at %H:%M:%S") # Get current time to record game date
+    user_exists = colScores.find_one({'name': session['username']})
+    if not user_exists:
+        newScores = {"name": session['username'],
+                     "scores": [{"date": curDate, "score": score}],
+                     "highscore": score}
+        colScores.insert_one(newScores)
+    else:
+        curScores = colScores.find_one({'name': session['username']})[1]
+        newScore = {"date": curDate, "score": score}
+        curScores.insert(0, newScore)
+        """
+        TODO: Find way to update document in MongoDB
+        TODO: Calculate if high-score needs updating
+        """
     return 'Score received!'
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
