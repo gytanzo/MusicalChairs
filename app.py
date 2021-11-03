@@ -44,11 +44,17 @@ def login():
 def helpPage():
     return render_template('help.html')
 
+@app.route('/gameselection.html')
+def gameSelection():
+    return render_template('gameselection.html')
+
 @app.route('/playgame.html')
 def gamePage():
-    if 'username' in session:
-        return render_template('playgame.html')
-    return redirect('/')
+    return render_template('playgame.html')
+
+@app.route('/endlessgame.html')
+def endlessGame():
+    return render_template('endlessgame.html')
 
 @app.route('/profile.html')
 def profilePage():

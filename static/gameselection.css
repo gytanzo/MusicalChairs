@@ -29,3 +29,15 @@ body {
     padding: 16px;
     margin-top: 30px;
 }
+
+.button {
+    border: none;
+    display: block;
+    font-size: 36px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border-radius: 10px;
+    height: 450px;
+    width: 300px;
+}
