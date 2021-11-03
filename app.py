@@ -7,6 +7,7 @@ from flask import render_template, render_template_string
 import os
 import sys
 import bcrypt
+import json
 
 app = Flask(__name__)
 
@@ -102,6 +103,12 @@ def logout():
         return redirect('/')
     return redirect('index.html')
 
+# Receiving final score from game via POST
+@app.route('/store/<string:score>', methods=['POST'])
+def storeScore(score):
+    score = json.loads(score)
+    print(score)
+    return 'Score received!'
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":

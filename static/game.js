@@ -43,6 +43,8 @@ function correct() {
         score = calculateScore(score);
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
+        // Send final score back to DB
+        storeScore(score);
     }
 }
 
@@ -58,7 +60,21 @@ function wrong() {
     else if (currentquestion === lastquestion) {
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
+        // Send final score back to DB
+        storeScore(score);
     }
+}
+
+// Below here is where a POST request will be sent to Python
+// In order to store the final score into MongoDB
+function storeScore(score) {
+    const req = new XMLHttpRequest();
+    score = JSON.stringify(score)
+    req.open('POST', '/store/'+score);
+    req.onload = () => {
+        console.log(req.responseText)
+    }
+    req.send();
 }
 
 var x;
