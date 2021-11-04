@@ -43,6 +43,9 @@ function correct() {
         score = calculateScore(score);
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
+
+        // Sends score to backend
+        storeScore(score);
     }
 }
 
@@ -57,9 +60,22 @@ function wrong() {
     }
     else if (currentquestion === lastquestion) {
         currentquestion += 1
+
+        // Sends score to backend
+        storeScore(score);
     }
 }
-
+// Below here is where a POST request will be sent to Python
+// In order to store the final score into MongoDB
+function storeScore(score) {
+    const req = new XMLHttpRequest();
+    score = JSON.stringify(score)
+    req.open('POST', '/store/'+score);
+    req.onload = () => {
+        console.log(req.responseText)
+    }
+    req.send();
+}
 var x;
 function countdownTime() {
     if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.
