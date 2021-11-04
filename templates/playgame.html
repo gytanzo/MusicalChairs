@@ -25,28 +25,27 @@
             <a href="index.html" style="text-decoration: none;">Home</a>
             <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
         </div>
-        <audio src="" id="audio" loop="loop"></audio>
         <div class="main">
-            <button class="song_button song1" onclick="answerKey = pressedA(answerKey); countdownTime();">
+            <button class="song_button song1" onclick="answerKey = pressedA(answerKey); answerKey = countdownTime(answerKey);">
                 <span class="question_box">A.</span>
                 <span class="question_box" id="songname1"><span id="A"></span></span>
             </button>
             <br>
-            <button class="song_button song2" onclick="answerKey = pressedB(answerKey); countdownTime();">
+            <button class="song_button song2" onclick="answerKey = pressedB(answerKey); answerKey = countdownTime(answerKey);">
                 <span class="question_box">B.</span>
                 <span class="question_box" id="songname1"><span id="B"></span></span>
             </button>
             <br>
-            <button class="song_button song3" onclick="answerKey = pressedC(answerKey); countdownTime();">
+            <button class="song_button song3" onclick="answerKey = pressedC(answerKey); answerKey = countdownTime(answerKey);">
                 <span class="question_box">C.</span>
                 <span class="question_box" id="songname1"><span id="C"></span></span>
             </button>
             <br>
-            <button class="song_button song4" onclick="answerKey = pressedD(answerKey); countdownTime();">
+            <button class="song_button song4" onclick="answerKey = pressedD(answerKey); answerKey = countdownTime(answerKey);">
                 <span class="question_box">D.</span>
                 <span class="question_box" id="songname1"><span id="D"></span></span>
             </button>
-            <audio id="my_audio" loop="loop">
+            <audio id="my_audio"> 
                 <source id="audioSource" src=""></source>
             </audio>
             <script>
@@ -54,7 +53,7 @@
                 window.onload = function () {
                   answerKey = setAnswers();
                 }
-                document.body.addEventListener('click', firstPlay);
+                //document.body.addEventListener('click', firstPlay);
               </script>
         </div>
     </body>
