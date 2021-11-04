@@ -66,7 +66,7 @@ function countdownTime() {
     if (currentquestion == 11){ // If the user has answered all ten questions stop resetting the timer.
         clearInterval(x);
         document.getElementById("countdown").innerHTML = "DONE";
-        window.location.href = "endofgame.html";
+        window.location.href = "endofgame.html?score="+score;
         return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
     }
 
@@ -259,8 +259,4 @@ function setAnswers() {
 
     //console.log(completeButtons);
     return completeButtons; // The correct ordering of the buttons gets returned so that the onClick properly works!
-}
-
-function inputScore() {
-    document.getElementById('finalScore').innerHTML = "Total Points: " + score;
 }

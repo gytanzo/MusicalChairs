@@ -35,7 +35,10 @@
 </div>
 
 <script>
-    window.onload = inputScore();
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        document.getElementById('finalScore').innerHTML = "Total Points: " + urlParams.get("score");;
+    }
 </script>
 </body>
 
