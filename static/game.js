@@ -66,6 +66,7 @@ function countdownTime() {
     if (currentquestion == 11){ // If the user has answered all ten questions stop resetting the timer.
         clearInterval(x);
         document.getElementById("countdown").innerHTML = "DONE";
+        window.location.href = "endofgame.html";
         return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
     }
 
