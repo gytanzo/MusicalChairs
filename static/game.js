@@ -41,7 +41,7 @@ function correct() {
 
     else if (currentquestion === lastquestion) {
         score = calculateScore(score);
-        document.getElementById("score").innerHTML = score;
+        document.getElementByIgd("score").innerHTML = score;
         currentquestion += 1
     }
 }
@@ -109,7 +109,7 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 function setAnswers() {
-    var row = randomIntFromInterval(0, 38); // Grab the CSV row the player will be asked. 
+    var row = randomIntFromInterval(0, 39); // Grab the CSV row the player will be asked. 
 
     // These values will be used to make sure that we don't make two buttons the same answer.
     var assignedCorrect = false;
