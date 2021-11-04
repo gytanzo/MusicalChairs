@@ -26,22 +26,22 @@
             <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
         </div>
         <div class="main">
-            <button class="song_button song1" onclick="answerKey = pressedA(answerKey); answerKey = countdownTime(answerKey);">
+            <button class="song_button song1" onclick="answerKey = pressedA(answerKey); answerKey = countdownTime();">
                 <span class="question_box">A.</span>
                 <span class="question_box" id="songname1"><span id="A"></span></span>
             </button>
             <br>
-            <button class="song_button song2" onclick="answerKey = pressedB(answerKey); answerKey = countdownTime(answerKey);">
+            <button class="song_button song2" onclick="answerKey = pressedB(answerKey); answerKey = countdownTime();">
                 <span class="question_box">B.</span>
                 <span class="question_box" id="songname1"><span id="B"></span></span>
             </button>
             <br>
-            <button class="song_button song3" onclick="answerKey = pressedC(answerKey); answerKey = countdownTime(answerKey);">
+            <button class="song_button song3" onclick="answerKey = pressedC(answerKey); answerKey = countdownTime();">
                 <span class="question_box">C.</span>
                 <span class="question_box" id="songname1"><span id="C"></span></span>
             </button>
             <br>
-            <button class="song_button song4" onclick="answerKey = pressedD(answerKey); answerKey = countdownTime(answerKey);">
+            <button class="song_button song4" onclick="answerKey = pressedD(answerKey); answerKey = countdownTime();">
                 <span class="question_box">D.</span>
                 <span class="question_box" id="songname1"><span id="D"></span></span>
             </button>
@@ -53,7 +53,6 @@
                 window.onload = function () {
                   answerKey = setAnswers();
                 }
-                //document.body.addEventListener('click', firstPlay);
               </script>
         </div>
     </body>

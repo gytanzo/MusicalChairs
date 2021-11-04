@@ -56,7 +56,6 @@ function wrong() {
         return answerKey;
     }
     else if (currentquestion === lastquestion) {
-        document.getElementById("score").innerHTML = score;
         currentquestion += 1
     }
 }
@@ -69,19 +68,23 @@ function countdownTime() {
         return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
     }
 
-    var time = 30;
+    var time = 31;
     clearInterval(x);
     test();
     x = setInterval(test, 1000);
 
     function test() {
-        document.getElementById("countdown").innerHTML = time;
         time -= 1;
+        document.getElementById("countdown").innerHTML = time;
         if (time == 0) {
             clearInterval(x);
-            document.getElementById("countdown").innerHTML = "FAILED";
+            answerKey = wrong(); // If they run out of time, move on to the next question.
+            countdownTime(); 
+            return answerKey;
         }
     }
+
+    return answerKey; // By default, return the answerKey completely unchanged. 
 }
 
 function calculateScore(prevScore) {
@@ -100,25 +103,9 @@ var B;
 var C;
 var D;
 
-// Chrome doesn't let audio autoplay anymore so users basically need to click somewhere on screen before audio can play. Stupid Google. 
-function startGame() {
-    alert("Click here to begin the game.");
-}
-
 // Source: https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
 function randomIntFromInterval(min, max) { // min and max included 
     return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-/* Chrome and most other browsers disabled sound autoplay a couple years ago, so it is now necessary for the user to input in some way before sound gets played.
-   This just handles that first play, the remaining ones get run during setAnswers so that the new sound plays once the new answers get presented. 
-*/
-function firstPlay() {
-    var audio = document.getElementById("my_audio");
-    audio.load();
-    audio.play();
-    audio.loop = false;
-    document.body.removeEventListener('click', firstPlay);
 }
 
 function setAnswers() {
@@ -253,12 +240,10 @@ function setAnswers() {
             var source = document.getElementById('audioSource');
             source.src = data[row]["Song URL"]
             var audio = document.getElementById("my_audio");
+            audio.volume = .05; // Lower the default audio so your eardrums don't literally explode. You're welcome. 
             audio.load();
-            // Find a way to disable this if its the first song. 
             audio.play();
-            //console.log(source.src)
         })
 
-    //console.log(completeButtons);
     return completeButtons; // The correct ordering of the buttons gets returned so that the onClick properly works!
 }
