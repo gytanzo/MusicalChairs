@@ -115,16 +115,18 @@ def storeScore(score):
     if not user_exists:
         newScores = {"name": session['username'],
                      "scores": [{"date": curDate, "score": score}],
-                     "highscore": score}
+                     "highscore": {"date": curDate, "score": score}}
         colScores.insert_one(newScores)
     else:
-        curScores = colScores.find_one({'name': session['username']})[1]
+        curScores = colScores.find({'name': session['username']})[0]['scores']
         newScore = {"date": curDate, "score": score}
         curScores.insert(0, newScore)
-        """
-        TODO: Find way to update document in MongoDB
-        TODO: Calculate if high-score needs updating
-        """
+        # Update scores list with most recent game
+        colScores.update_one({'name': session['username']}, {'$set': {'scores': curScores}})
+        # Update high score if necessary
+        if score > colScores.find({'name': session['username']})[0]['highscore']['score']:
+            colScores.update_one({'name': session['username']}, {'$set': {'highscore': {'date': curDate, 'score': score}}})
+    # Return status message to affirm POST received.
     return 'Score received!'
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
