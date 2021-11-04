@@ -4,9 +4,11 @@ import pymongo
 from pymongo import MongoClient
 from flask import Flask, request, redirect, flash, session
 from flask import render_template, render_template_string
+from datetime import date, datetime
 import os
 import sys
 import bcrypt
+import json
 
 app = Flask(__name__)
 
@@ -67,7 +69,25 @@ def endlessGame():
 @app.route('/profile.html')
 def profilePage():
     if 'username' in session:
-        return render_template('profile.html')
+        # Logic for displaying recent games/high score
+        scores = [0, 0, 0, 0, 0]
+        games = ["None", "None", "None", "None", "None"]
+        hi_score = "Play a game!"
+        colScores = db.accounts.scores
+        user_exists = colScores.find_one({'name': session['username']})
+        if user_exists:
+            curScores = colScores.find({'name': session['username']})[0]['scores']
+            hi_score = colScores.find({'name': session['username']})[0]['highscore']['score']
+            i = 0
+            while i < len(curScores) and i < 5:
+                games[i] = curScores[i].get('date')
+                scores[i] = curScores[i].get('score')
+                i = i + 1
+        # This may look monstrous, but it is just passing variables to HTML. Unfortunately we pass a lot of variables.
+        # This renders the profile.html and passes the past five games with their dates, plus the hi-score
+        return render_template('profile.html', game_one=games[0], game_two=games[1], game_three=games[2], game_four=games[3], game_five=games[4],
+                               score_one=scores[0], score_two=scores[1], score_three=scores[2], score_four=scores[3],
+                               score_five=scores[4], hi_score=hi_score)
     return redirect('/')
 
 @app.route('/index.html')
@@ -106,6 +126,30 @@ def logout():
         return redirect('/')
     return redirect('index.html')
 
+# Receiving final score from game via POST
+@app.route('/store/<string:score>', methods=['POST'])
+def storeScore(score):
+    score = json.loads(score)
+    print(score)
+    colScores = db.accounts.scores
+    curDate = datetime.now().strftime("%m/%d/%Y at %H:%M:%S") # Get current time to record game date
+    user_exists = colScores.find_one({'name': session['username']})
+    if not user_exists:
+        newScores = {"name": session['username'],
+                     "scores": [{"date": curDate, "score": score}],
+                     "highscore": {"date": curDate, "score": score}}
+        colScores.insert_one(newScores)
+    else:
+        curScores = colScores.find({'name': session['username']})[0]['scores']
+        newScore = {"date": curDate, "score": score}
+        curScores.insert(0, newScore)
+        # Update scores list with most recent game
+        colScores.update_one({'name': session['username']}, {'$set': {'scores': curScores}})
+        # Update high score if necessary
+        if score > colScores.find({'name': session['username']})[0]['highscore']['score']:
+            colScores.update_one({'name': session['username']}, {'$set': {'highscore': {'date': curDate, 'score': score}}})
+    # Return status message to affirm POST received.
+    return 'Score received!'
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
