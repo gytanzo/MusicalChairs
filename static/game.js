@@ -259,3 +259,7 @@ function setAnswers() {
     //console.log(completeButtons);
     return completeButtons; // The correct ordering of the buttons gets returned so that the onClick properly works!
 }
+
+function inputScore() {
+    document.getElementById('finalScore').innerHTML = "Total Points: " + score;
+}

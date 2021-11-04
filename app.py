@@ -48,6 +48,10 @@ def login():
 def helpPage():
     return render_template('help.html')
 
+@app.route('/endofgame.html')
+def helpPage():
+    return render_template('help.html')
+
 @app.route('/gameselection.html')
 def gameSelection():
     return render_template('gameselection.html')
