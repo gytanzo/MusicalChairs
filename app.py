@@ -49,8 +49,8 @@ def helpPage():
     return render_template('help.html')
 
 @app.route('/endofgame.html')
-def helpPage():
-    return render_template('help.html')
+def endofgame():
+    return render_template('endofgame.html')
 
 @app.route('/gameselection.html')
 def gameSelection():
