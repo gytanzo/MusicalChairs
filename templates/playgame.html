@@ -7,16 +7,9 @@
     </head>
 
     <body>
-        <script> 
-            window.onload = countdownTime();
-        </script>
-        <div class="navbar">
-            <a href="index.html" style="text-decoration: none;">Home</a>
-            <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
-        </div>
         <div class="section">
             <button class="timer" style="float: left;">
-              <p id="countdown"></p>
+              <p id="countdown" value="30"></p>
             </button>
             <div class="scorebox" style="float: right;">
                 <span id="questionsRemaining" class="questionsRemaining">1 / 10</span>
@@ -24,6 +17,13 @@
                 <span id="score" class="score">0</span>
                 <span id="answerKey"></span>
             </div>
+        </div>
+        <script> 
+            window.onload = countdownTime();
+        </script>
+        <div class="navbar">
+            <a href="index.html" style="text-decoration: none;">Home</a>
+            <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
         </div>
         <audio src="" id="audio" loop="loop"></audio>
         <div class="main">

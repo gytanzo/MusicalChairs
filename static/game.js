@@ -43,8 +43,6 @@ function correct() {
         score = calculateScore(score);
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
-        // Send final score back to DB
-        storeScore(score);
     }
 }
 
@@ -60,42 +58,30 @@ function wrong() {
     else if (currentquestion === lastquestion) {
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
-        // Send final score back to DB
-        storeScore(score);
     }
-}
-
-// Below here is where a POST request will be sent to Python
-// In order to store the final score into MongoDB
-function storeScore(score) {
-    const req = new XMLHttpRequest();
-    score = JSON.stringify(score)
-    req.open('POST', '/store/'+score);
-    req.onload = () => {
-        console.log(req.responseText)
-    }
-    req.send();
 }
 
 var x;
 function countdownTime() {
-    if (currentquestion == 11){ // If the user has answered all ten questions stop resetting the timer.
-        clearInterval(x);
+    if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.
         document.getElementById("countdown").innerHTML = "DONE";
-        window.location.href = "endofgame.html?score="+score;
+        window.location.href = "endofgame.html?score=" + score;
         return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
     }
 
     var time = 30;
     clearInterval(x);
-    x = setInterval(function () {
+    test();
+    x = setInterval(test, 1000);
+
+    function test() {
         document.getElementById("countdown").innerHTML = time;
         time -= 1;
         if (time == 0) {
             clearInterval(x);
             document.getElementById("countdown").innerHTML = "FAILED";
         }
-    }, 1000);
+    }
 }
 
 function calculateScore(prevScore) {
