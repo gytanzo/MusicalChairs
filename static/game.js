@@ -65,6 +65,7 @@ function wrong() {
         storeScore(score);
     }
 }
+
 // Below here is where a POST request will be sent to Python
 // In order to store the final score into MongoDB
 function storeScore(score) {
@@ -76,7 +77,8 @@ function storeScore(score) {
     }
     req.send();
 }
-var x;
+
+var timer;
 function countdownTime() {
     if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.~
         document.getElementById("countdown").innerHTML = "DONE";
@@ -85,15 +87,15 @@ function countdownTime() {
     }
 
     var time = 31;
-    clearInterval(x);
-    test();
-    x = setInterval(test, 1000);
+    clearInterval(countdown);
+    countdown();
+    countdown = setInterval(countdown, 1000);
 
-    function test() {
+    function countdown() {
         time -= 1;
         document.getElementById("countdown").innerHTML = time;
         if (time == 0) {
-            clearInterval(x);
+            clearInterval(countdown);
             answerKey = wrong(); // If they run out of time, move on to the next question.
             countdownTime(); 
             return answerKey;
