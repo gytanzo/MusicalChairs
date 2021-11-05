@@ -87,15 +87,15 @@ function countdownTime() {
     }
 
     var time = 31;
-    clearInterval(countdown);
+    clearInterval(timer);
     countdown();
-    countdown = setInterval(countdown, 1000);
+    timer = setInterval(countdown, 1000);
 
     function countdown() {
         time -= 1;
         document.getElementById("countdown").innerHTML = time;
         if (time == 0) {
-            clearInterval(countdown);
+            clearInterval(timer);
             answerKey = wrong(); // If they run out of time, move on to the next question.
             countdownTime(); 
             return answerKey;
