@@ -265,3 +265,78 @@ function setAnswers() {
 
     return completeButtons; // The correct ordering of the buttons gets returned so that the onClick properly works!
 }
+
+/* Here is the code for the endless game mode. Uses the same as above with some changes throughout */
+
+function endlesspressedA(answerKey) {
+    var value = answerKey[0];
+    if (value == 0) return endlessCorrect();
+    else return endlessWrong();
+}
+
+function endlesspressedB(answerKey) {
+    var value = answerKey[1];
+    if (value == 0) return endlessCorrect();
+    else return endlessWrong();
+}
+
+function endlesspressedC(answerKey) {
+    var value = answerKey[2];
+    if (value == 0) return endlessCorrect();
+    else return endlessWrong();
+}
+
+function endlesspressedD(answerKey) {
+    var value = answerKey[3];
+    if (value == 0) return endlessCorrect();
+    else return endlessWrong();
+}
+
+function endlessCorrect() {
+    let answerKey;
+        score = calculateScore(score);
+        document.getElementById("score").innerHTML = score;
+
+        currentquestion += 1
+        document.getElementById("questionsRemaining").innerHTML = currentquestion;
+
+        answerKey = setAnswers();
+        return answerKey;
+}
+
+var valid = true;
+function endlessWrong() {
+    let answerKey;
+    currentquestion += 1
+    valid = false;
+    // Sends score to backend (but not doing it for endless right now)
+    // storeScore(score);
+}
+
+
+var timer;
+function endlessTimer() {
+    if (valid == false) {
+        document.getElementById("countdown").innerHTML = "DONE";
+        window.location.href = "endlessendofgame.html?score=" + score;
+        return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
+    }
+
+    var time = 31;
+    clearInterval(timer);
+    countdown();
+    timer = setInterval(countdown, 1000);
+
+    function countdown() {
+        time -= 1;
+        document.getElementById("countdown").innerHTML = time;
+        if (time == 0) {
+            clearInterval(timer);
+            answerKey = endlessWrong(); // If they run out of time, move on to the next question.
+            endlessTimer(); 
+            return answerKey;
+        }
+    }
+
+    return answerKey; // By default, return the answerKey completely unchanged. 
+}

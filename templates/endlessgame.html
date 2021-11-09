@@ -2,18 +2,58 @@
 <html>
     <head>
         <link rel="stylesheet" href="../static/game.css">
+        <script type="text/javascript" src="../static/game.js"></script>
+        <link rel="shortcut icon" href="#">
     </head>
 
     <body>
+        <div class="section">
+            <button class="timer" style="float: left;">
+              <p id="countdown" value="30"></p>
+            </button>
+            <div class="scorebox" style="float: right;">
+                <span id="questionsRemaining" class="questionsRemaining">1</span>
+                <br>
+                <span id="score" class="score">0</span>
+                <span id="answerKey"></span>
+            </div>
+        </div>
+        <script> 
+            window.onload = endlessTimer();
+        </script>
         <div class="navbar">
             <a href="index.html" style="text-decoration: none;">Home</a>
             <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
         </div>
         <div class="main">
-            <p style="font-size: 30px; color: red;">
-                THIS IS WHERE THE ENDLESS GAME IS GOING TO GO
-            </p>
+            <button class="song_button song1" onclick="answerKey = endlesspressedA(answerKey); answerKey = endlessTimer();">
+                <span class="question_box">A.</span>
+                <span class="question_box" id="songname1"><span id="A"></span></span>
+            </button>
+            <br>
+            <button class="song_button song2" onclick="answerKey = endlesspressedB(answerKey); answerKey = endlessTimer();">
+                <span class="question_box">B.</span>
+                <span class="question_box" id="songname1"><span id="B"></span></span>
+            </button>
+            <br>
+            <button class="song_button song3" onclick="answerKey = endlesspressedC(answerKey); answerKey = endlessTimer();">
+                <span class="question_box">C.</span>
+                <span class="question_box" id="songname1"><span id="C"></span></span>
+            </button>
+            <br>
+            <button class="song_button song4" onclick="answerKey = endlesspressedD(answerKey); answerKey = endlessTimer();">
+                <span class="question_box">D.</span>
+                <span class="question_box" id="songname1"><span id="D"></span></span>
+            </button>
+            <audio id="my_audio"> 
+                <source id="audioSource" src=""></source>
+            </audio>
+            <script>
+                let answerKey;
+                window.onload = function () {
+                  answerKey = setAnswers();
+                }
+              </script>
         </div>
     </body>
-    
 </html>
