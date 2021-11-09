@@ -84,11 +84,11 @@ def leaderboard():
         # Collect all scores documents
         allScores = db.accounts.scores
         # Below statement finds all documents then proceeds to sort them by highscore: score
-        highestScores = allScores.find().sort({'highscore.score', -1})
+        highestScores = allScores.find().sort('highscore.score', -1)
         # Logic for grabbing top ten scores / or til end of document
         counter, limit = 0, 0
         length = allScores.count()
-        if len(highestScores) > 10:
+        if length > 10:
             limit = 10
         else:
             limit = length
