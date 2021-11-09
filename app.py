@@ -66,6 +66,10 @@ def gamePage():
 def endlessGame():
     return render_template('endlessgame.html')
 
+@app.route('/endlessendofgame.html')
+def endlessendofgame():
+    return render_template('endlessendofgame.html')
+
 @app.route('/profile.html')
 def profilePage():
     if 'username' in session:
