@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from flask import Flask, request, redirect, flash, session
 from flask import render_template, render_template_string
 from datetime import date, datetime
+from operator import itemgetter
 import os
 import sys
 import bcrypt
@@ -65,6 +66,45 @@ def gamePage():
 @app.route('/endlessgame.html')
 def endlessGame():
     return render_template('endlessgame.html')
+
+"""
+TODO: Create leaderboard HTML Page.
+This was written in advance and anticipation. Tested by running in main() and checking print statements
+"""
+
+@app.route('/leaderboard.html')
+def leaderboard():
+    if 'username' in session:
+        # Set up base values n = names, d = dates, hs = hiscore
+        hs, n, d = [], [], []
+        for i in range(0, 10):
+            hs.append(0)
+            n.append('No placement')
+            d.append('MM/DD/YY')
+        # Collect all scores documents
+        allScores = db.accounts.scores
+        # Below statement finds all documents then proceeds to sort them by highscore: score
+        highestScores = allScores.find().sort({'highscore.score', -1})
+        # Logic for grabbing top ten scores / or til end of document
+        counter, limit = 0, 0
+        length = allScores.count()
+        if len(highestScores) > 10:
+            limit = 10
+        else:
+            limit = length
+        # Add top ten documents to arrays
+        while counter < limit:
+            n[counter] = highestScores[counter]['name']
+            d[counter] = highestScores[counter]['highscore']['date']
+            hs[counter] = highestScores[counter]['highscore']['score']
+            counter = counter + 1
+        # Another monstrous return statement. Returning template AND top ten scores with names and dates
+        return render_template('leaderboard.html',
+                               n1=n[0], n2=n[1], n3=n[2], n4=n[3], n5=n[4], n6=n[5], n7=n[6], n8=n[7], n9=n[8], n10=n[9],
+                               d1=d[0], d2=d[1], d3=d[2], d4=d[3], d5=d[4], d6=d[5], d7=d[6], d8=d[7], d9=d[8], d10=d[9],
+                               hs1=hs[0], hs2=hs[1], hs3=hs[2], hs4=hs[3], hs5=hs[4], hs6=hs[5], hs7=hs[6], hs8=hs[7], hs9=hs[8], hs10=hs[9])
+    else:
+        return render_template('login.html')
 
 @app.route('/profile.html')
 def profilePage():
