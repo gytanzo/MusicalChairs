@@ -10,12 +10,13 @@
 .e1_3 {
 	color:rgba(0, 0, 0, 1);
 	width:571px;
-	height:158px;
+	height:168px;
 	position:absolute;
 	left:435px;
 	top:33px;
+	font-family:Roboto;
 	text-align:center;
-	font-size:Symbol(figma.mixed)px;
+	font-size:72px;
 	letter-spacing:0;
 }
 .e1_7 {
@@ -446,5 +447,17 @@
 	font-family:Roboto;
 	text-align:center;
 	font-size:24px;
+	letter-spacing:0;
+}
+.e3_3 {
+	color:rgba(0, 0, 0, 1);
+	width:503px;
+	height:78px;
+	position:absolute;
+	left:469px;
+	top:100px;
+	font-family:Roboto;
+	text-align:center;
+	font-size:64px;
 	letter-spacing:0;
 }
