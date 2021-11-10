@@ -1,6 +1,7 @@
 var score = 0;
 var currentquestion = 1;
 var lastquestion = 10;
+var songs = [];
 
 function pressedA(answerKey) {
     var value = answerKey[0];
@@ -82,8 +83,16 @@ var timer;
 function countdownTime() {
     if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.~
         document.getElementById("countdown").innerHTML = "DONE";
-        window.location.href = "endofgame.html?score=" + score;
-        return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
+
+        // Use Query String to store score
+        var url = "endofgame.html?score=" + score;
+
+        // Use Query String to store song numbers
+        for(let i = 0; i < songs.length; i++){
+            url += "&" + i + "=" + songs[i];
+        }
+        window.location.href = url;
+        return;
     }
 
     var time = 31;
@@ -145,7 +154,11 @@ function setAnswers() {
             // Randomly generate a number between 0 and 3. 
             // If the first number is two, then A = Incorrect 2. 
 
-            let i = 0; // This will count how many times we have added a button. 
+            let i = 0; // This will count how many times we have added a button.
+
+            // Store song number to array
+            songs.push(data[row].Number);
+
             while (i != 4) {
                 var value = randomIntFromInterval(0, 3); // Correct = 0, Incorrect1 = 1, Incorrect2 = 2, Incorrect3 = 3
                 if (completeButtons[value] != -1) { // If the button has already been assigned

@@ -17,16 +17,16 @@
         <br>
         <span class="EndOfGamePageText">
             <span id="finalScore">Total Points: 0</span><br>
-            Song 1:<br>
-            Song 2:<br>
-            Song 3:<br>
-            Song 4:<br>
-            Song 5:<br>
-            Song 6:<br>
-            Song 7:<br>
-            Song 8:<br>
-            Song 9:<br>
-            Song 10:<br>
+            Song 1:<span id="song1"></span><br>
+            Song 2:<span id="song2"></span><br>
+            Song 3:<span id="song3"></span><br>
+            Song 4:<span id="song4"></span><br>
+            Song 5:<span id="song5"></span><br>
+            Song 6:<span id="song6"></span><br>
+            Song 7:<span id="song7"></span><br>
+            Song 8:<span id="song8"></span><br>
+            Song 9:<span id="song9"></span><br>
+            Song 10:<span id="song10"></span><br>
                 </span>
         <a href="playgame.html" style="text-decoration: none;">
             <button class="button play_button">Play Again</button>
@@ -37,7 +37,23 @@
 <script>
     window.onload = function () {
         const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('finalScore').innerHTML = "Total Points: " + urlParams.get("score");;
+        document.getElementById('finalScore').innerHTML = "Total Points: " + urlParams.get("score");
+
+        fetch("../static/songs.json")
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                for (let i = 1; i <= 10; i++) {
+                    const x = "song" + i;
+
+                    const songNum = urlParams.get(i-1);
+                    const songData = data[songNum-1];
+
+                    document.getElementById(x).innerHTML = " " + songData.Correct + " by " + songData.Artist;
+                }
+            })
+
     }
 </script>
 </body>
