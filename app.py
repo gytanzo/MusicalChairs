@@ -18,7 +18,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 
 # Connect to database, database url stored in environment variable
 db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
-
 accounts = db.accounts.passwords    # contact passwords collection in db
 
 # Flask delegates this to be current home-screen
@@ -88,7 +87,7 @@ def leaderboard():
         highestScores = allScores.find().sort('highscore.score', -1)
         # Logic for grabbing top ten scores / or til end of document
         counter, limit = 0, 0
-        length = allScores.count_documents()
+        length = allScores.count_documents({})
         if length > 10:
             limit = 10
         else:
