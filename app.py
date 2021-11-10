@@ -14,10 +14,13 @@ import json
 app = Flask(__name__)
 
 # Secret Key necessary to use for Flask Sessions, created as environment variable "SECRET_KEY"
-app.secret_key = os.environ.get("SECRET_KEY")
+#app.secret_key = os.environ.get("SECRET_KEY")
+
+app.secret_key = 'supersecretkey'
 
 # Connect to database, database url stored in environment variable
-db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
+#db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
+db = pymongo.MongoClient("mongodb+srv://Admin:6ek9T4OusBWEWu1G@musicalchairs.3wxqw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE")
 accounts = db.accounts.passwords    # contact passwords collection in db
 
 # Flask delegates this to be current home-screen
