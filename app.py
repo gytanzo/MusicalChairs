@@ -169,7 +169,7 @@ def logout():
     return redirect('index.html')
 
 # Receiving final score from game via POST
-@app.route('/store/<string:score>', methods=['POST'])
+@app.route('/store/<string:score>', methods=['POST', 'GET'])
 def storeScore(score):
     score = json.loads(score)
     print(score)

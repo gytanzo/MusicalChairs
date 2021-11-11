@@ -2,7 +2,6 @@ var score = 0;
 var currentquestion = 1;
 var lastquestion = 10;
 var songs = [];
-
 function pressedA(answerKey) {
     var value = answerKey[0];
     if (value == 0) return correct();
@@ -65,14 +64,19 @@ function wrong() {
 
 // Below here is where a POST request will be sent to Python
 // In order to store the final score into MongoDB
+
+// Last minute fix: Made POST request Synchronous due to error with Firefox
 function storeScore(score) {
-    const req = new XMLHttpRequest();
+    var req = new XMLHttpRequest();
     score = JSON.stringify(score)
-    req.open('POST', '/store/'+score);
-    req.onload = () => {
-        console.log(req.responseText)
+    if (req.readyState === XMLHttpRequest.DONE) {
+        if (req.status === 200) {
+            console.log(req.responseText)
+        }
+        else { console.log("There was an error posting your score") }
     }
-    req.send();
+    req.open('POST', '/store/'+score, false);
+    req.send(score);
 }
 
 var timer;
