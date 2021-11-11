@@ -45,8 +45,6 @@ function correct() {
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
 
-        // Sends score to backend
-        storeScore(score);
     }
 }
 
@@ -62,8 +60,6 @@ function wrong() {
     else if (currentquestion === lastquestion) {
         currentquestion += 1
 
-        // Sends score to backend
-        storeScore(score);
     }
 }
 
@@ -83,7 +79,7 @@ var timer;
 function countdownTime() {
     if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.~
         document.getElementById("countdown").innerHTML = "DONE";
-
+        storeScore(score);
         // Use Query String to store score
         var url = "endofgame.html?score=" + score;
 

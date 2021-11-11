@@ -86,17 +86,20 @@ def leaderboard():
         highestScores = allScores.find().sort('highscore.score', -1)
         # Logic for grabbing top ten scores / or til end of document
         counter, limit = 0, 0
-        length = allScores.count_documents({})
+        length = allScores.count()
         if length > 10:
             limit = 10
         else:
             limit = length
         # Add top ten documents to arrays
-        while counter < limit:
-            n[counter] = highestScores[counter]['name']
-            d[counter] = highestScores[counter]['highscore']['date']
-            hs[counter] = highestScores[counter]['highscore']['score']
+        for x in highestScores:
+            n[counter] = x['name']
+            d[counter] = x['highscore']['date']
+            hs[counter] = x['highscore']['score']
             counter = counter + 1
+            if counter == limit:
+                break
+
         # Another monstrous return statement. Returning template AND top ten scores with names and dates
         return render_template('leaderboard.html',
                                u1=n[0], u2=n[1], u3=n[2], u4=n[3], u5=n[4], u6=n[5], u7=n[6], u8=n[7], u9=n[8], u10=n[9],
