@@ -137,6 +137,9 @@ function randomIntFromInterval(min, max) { // min and max included
 
 function setAnswers() {
     var row = randomIntFromInterval(0, 39); // Grab the CSV row the player will be asked. 
+    while (songs.includes((row+1).toString())){ // If a song that has already been played has been generated
+        row = randomIntFromInterval(0, 39); // Generate new number
+    }
 
     // These values will be used to make sure that we don't make two buttons the same answer.
     var assignedCorrect = false;
