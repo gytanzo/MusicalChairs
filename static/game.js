@@ -136,14 +136,13 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 function setAnswers() {
-    // Changing this from (0, 39) to (1, 40) breaks the code. 
-    var row = randomIntFromInterval(1, 40); // Grab the CSV row the player will be asked. 
+    var row = randomIntFromInterval(0, 39); // Grab the CSV row the player will be asked. 
+    var songNumber = (row + 1).toString(); // This is how the songs array that contains the previously played songs handles row numbers
 
-    /* This code solves the duplicate song issue. 
-    while (songs.includes((row+1).toString())){ // If a song that has already been played has been generated
+    while (songs.includes(songNumber)){ // If a song that has already been played has been generated
         row = randomIntFromInterval(0, 39); // Generate new number
+        songNumber = (row + 1).toString(); // Update songsNumber so we can make sure this new song is also unique
     }
-    */ 
 
     // These values will be used to make sure that we don't make two buttons the same answer.
     var assignedCorrect = false;
