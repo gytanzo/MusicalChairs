@@ -22,16 +22,15 @@
     <!--<div class="linkbox"></div>
             <span  class="link_text">LINK ACCOUNT</span>
             -->
-    <div id="genre_select" class="genre-checklist" tabindex="100">
-        <span class="anchor">Genre Selection</span>
-        <ul class="items">
-            <!--These names are placeholders right now. Replace with the actual genre of music later. -->
-            <li><input type="checkbox" id="Genre 1" />Electronica </li>
-            <li><input type="checkbox" id="Genre 2" />Rock</li>
-            <li><input type="checkbox" id="Genre 3" />Hip Hop </li>
-            <li><input type="checkbox" id="Genre 4" />Jazz </li>
-            <li><input type="checkbox" id="Genre 5" />Classical </li>
-        </ul>
+    <div class="dropdown">
+        <button onclick="dropdown()" class="dropbtn">Genre Selection</button>
+        <div id="dropbox" class="dropdown-content">
+            <a class="genre1"><input type="checkbox" id="Genre 1" class="chkbox1" />Electronica </a>
+            <a class="genre2"><input type="checkbox" id="Genre 2" class="chkbox2" />Rock</a>
+            <a class="genre3"><input type="checkbox" id="Genre 3" class="chkbox3" />Hip Hop </a>
+            <a class="genre4"><input type="checkbox" id="Genre 4" class="chkbox4" />Jazz </a>
+            <a class="genre5"><input type="checkbox" id="Genre 5" class="chkbox5" />Classical </a>
+        </div>
     </div>
     <div class="tooltip">?
         <span class="tooltiptext">This is the Genre Selection, where you can specify which types of songs you do and don't want to listen to. By default, there are five genres, with all five enabled. For each genre you disable, you receive a 10% points deduction, and you can disable a maximum of four genres.</span>
@@ -64,13 +63,37 @@
 </body>
 
 <script>
-    var checkList = document.getElementById('genre_select');
-    checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
-        if (checkList.classList.contains('visible'))
-            checkList.classList.remove('visible');
-        else
-            checkList.classList.add('visible');
+    /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+    function dropdown() {
+        document.getElementById("dropbox").classList.toggle("show");
     }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        // Check to see if they are clicking the button or its contents
+        if (!event.target.matches('.dropbtn') // The button itself
+            &&
+            !event.target.matches('.chkbox1') && !event.target.matches('.chkbox2') && !event.target.matches('.chkbox3') && !event.target.matches('.chkbox4') && !event.target.matches('.chkbox5') // The checkboxes
+            &&
+            !event.target.matches('.genre1') && !event.target.matches('.genre2') && !event.target.matches('.genre3') && !event.target.matches('.genre4') && !event.target.matches('.genre5') // The area around the checkboxes
+        ) {
+            // If they disselect every genre, prevent them from exiting the dropdown 
+            if (!document.getElementById("Genre 1").checked && !document.getElementById("Genre 2").checked && !document.getElementById("Genre 3").checked && !document.getElementById("Genre 4").checked && !document.getElementById("Genre 5").checked) alert("You must have at least one genre selected.");
+            else {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+                // The options should be saved here. 
+            }
+        }
+    }
+
+
 
     /* In the future, I want this function to check the database and set the boxes 
     /* depending on what genres the user has picked. It should also be able to send 
