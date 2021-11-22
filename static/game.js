@@ -142,7 +142,7 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-// Returns the row of the csv file. 
+// Returns the row of the JSON file. 
 function getSong() {
     var rows = []; // List of rows that the program will randomly pick from 
 
