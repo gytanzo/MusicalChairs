@@ -142,19 +142,6 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-// Source: https://stackoverflow.com/questions/6454198/check-if-a-value-is-within-a-range-of-numbers
-function between(x, min, max) { // min and max included
-    return x >= min && x <= max;
-}
-
-// Source: https://masteringjs.io/tutorials/fundamentals/compare-arrays
-function arrayEquals(a, b) {
-    return Array.isArray(a) &&
-        Array.isArray(b) &&
-        a.length === b.length &&
-        a.every((val, index) => val === b[index]);
-}
-
 // Returns the row of the csv file. 
 function getSong() {
     var rows = []; // List of rows that the program will randomly pick from 
