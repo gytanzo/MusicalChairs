@@ -2,6 +2,7 @@ var score = 0;
 var currentquestion = 1;
 var lastquestion = 10;
 var songs = [];
+
 function pressedA(answerKey) {
     var value = answerKey[0];
     if (value == 0) return correct();
@@ -37,9 +38,7 @@ function correct() {
 
         answerKey = setAnswers();
         return answerKey;
-    }
-
-    else if (currentquestion === lastquestion) {
+    } else if (currentquestion === lastquestion) {
         score = calculateScore(score);
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
@@ -55,8 +54,7 @@ function wrong() {
 
         answerKey = setAnswers();
         return answerKey;
-    }
-    else if (currentquestion === lastquestion) {
+    } else if (currentquestion === lastquestion) {
         currentquestion += 1
 
     }
@@ -72,14 +70,14 @@ function storeScore(score) {
     if (req.readyState === XMLHttpRequest.DONE) {
         if (req.status === 200) {
             console.log(req.responseText)
-        }
-        else { console.log("There was an error posting your score") }
+        } else { console.log("There was an error posting your score") }
     }
-    req.open('POST', '/store/'+score, false);
+    req.open('POST', '/store/' + score, false);
     req.send(score);
 }
 
 var timer;
+
 function countdownTime() {
     if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.~
         document.getElementById("countdown").innerHTML = "DONE";
@@ -88,7 +86,7 @@ function countdownTime() {
         var url = "endofgame.html?score=" + score;
 
         // Use Query String to store song numbers
-        for(let i = 0; i < songs.length; i++){
+        for (let i = 0; i < songs.length; i++) {
             url += "&" + i + "=" + songs[i];
         }
         window.location.href = url;
@@ -106,7 +104,7 @@ function countdownTime() {
         if (time == 0) {
             clearInterval(timer);
             answerKey = wrong(); // If they run out of time, move on to the next question.
-            countdownTime(); 
+            countdownTime();
             return answerKey;
         }
     }
@@ -139,7 +137,7 @@ function setAnswers() {
     var row = randomIntFromInterval(0, 39); // Grab the CSV row the player will be asked. 
     var songNumber = (row + 1).toString(); // This is how the songs array that contains the previously played songs handles row numbers
 
-    while (songs.includes(songNumber)){ // If a song that has already been played has been generated
+    while (songs.includes(songNumber)) { // If a song that has already been played has been generated
         row = randomIntFromInterval(0, 39); // Generate new number
         songNumber = (row + 1).toString(); // Update songsNumber so we can make sure this new song is also unique
     }
@@ -169,101 +167,69 @@ function setAnswers() {
                 var value = randomIntFromInterval(0, 3); // Correct = 0, Incorrect1 = 1, Incorrect2 = 2, Incorrect3 = 3
                 if (completeButtons[value] != -1) { // If the button has already been assigned
                     ; // Do nothing, get a new value 
-                }
-
-                else { // Else
+                } else { // Else
                     if (assignedCorrect == false) { // First value generated is going to be the correct button
                         if (value == 0) {
                             document.getElementById('A').innerHTML = data[row].Correct;
                             completeButtons[0] = 0;
-                        }
-
-                        else if (value == 1) {
+                        } else if (value == 1) {
                             document.getElementById('B').innerHTML = data[row].Correct;
                             completeButtons[1] = 0;
-                        }
-
-                        else if (value == 2) {
+                        } else if (value == 2) {
                             document.getElementById('C').innerHTML = data[row].Correct;
                             completeButtons[2] = 0;
-                        }
-
-                        else if (value == 3) {
+                        } else if (value == 3) {
                             document.getElementById('D').innerHTML = data[row].Correct;
                             completeButtons[3] = 0;
                         }
 
                         assignedCorrect = true;
                         i++;
-                    }
-
-                    else if (assignedIncorrect1 == false) {
+                    } else if (assignedIncorrect1 == false) {
                         if (value == 0) {
                             document.getElementById('A').innerHTML = data[row]["Incorrect 1"];
                             completeButtons[0] = 1;
-                        }
-
-                        else if (value == 1) {
+                        } else if (value == 1) {
                             document.getElementById('B').innerHTML = data[row]["Incorrect 1"];
                             completeButtons[1] = 1;
-                        }
-
-                        else if (value == 2) {
+                        } else if (value == 2) {
                             document.getElementById('C').innerHTML = data[row]["Incorrect 1"];
                             completeButtons[2] = 1;
-                        }
-
-                        else if (value == 3) {
+                        } else if (value == 3) {
                             document.getElementById('D').innerHTML = data[row]["Incorrect 1"];
                             completeButtons[3] = 1;
                         }
 
                         assignedIncorrect1 = true;
                         i++;
-                    }
-
-                    else if (assignedIncorrect2 == false) {
+                    } else if (assignedIncorrect2 == false) {
                         if (value == 0) {
                             document.getElementById('A').innerHTML = data[row]["Incorrect 2"];
                             completeButtons[0] = 2;
-                        }
-
-                        else if (value == 1) {
+                        } else if (value == 1) {
                             document.getElementById('B').innerHTML = data[row]["Incorrect 2"];
                             completeButtons[1] = 2;
-                        }
-
-                        else if (value == 2) {
+                        } else if (value == 2) {
                             document.getElementById('C').innerHTML = data[row]["Incorrect 2"];
                             completeButtons[2] = 2;
-                        }
-
-                        else if (value == 3) {
+                        } else if (value == 3) {
                             document.getElementById('D').innerHTML = data[row]["Incorrect 2"];
                             completeButtons[3] = 2;
                         }
 
                         assignedIncorrect2 = true;
                         i++;
-                    }
-
-                    else if (assignedIncorrect3 == false) {
+                    } else if (assignedIncorrect3 == false) {
                         if (value == 0) {
                             document.getElementById('A').innerHTML = data[row]["Incorrect 3"];
                             completeButtons[0] = 3;
-                        }
-
-                        else if (value == 1) {
+                        } else if (value == 1) {
                             document.getElementById('B').innerHTML = data[row]["Incorrect 3"];
                             completeButtons[1] = 3;
-                        }
-
-                        else if (value == 2) {
+                        } else if (value == 2) {
                             document.getElementById('C').innerHTML = data[row]["Incorrect 3"];
                             completeButtons[2] = 3;
-                        }
-
-                        else if (value == 3) {
+                        } else if (value == 3) {
                             document.getElementById('D').innerHTML = data[row]["Incorrect 3"];
                             completeButtons[3] = 3;
                         }
@@ -313,17 +279,18 @@ function endlesspressedD(answerKey) {
 
 function endlessCorrect() {
     let answerKey;
-        score = calculateScore(score);
-        document.getElementById("score").innerHTML = score;
+    score = calculateScore(score);
+    document.getElementById("score").innerHTML = score;
 
-        currentquestion += 1
-        document.getElementById("questionsRemaining").innerHTML = currentquestion;
+    currentquestion += 1
+    document.getElementById("questionsRemaining").innerHTML = currentquestion;
 
-        answerKey = setAnswers();
-        return answerKey;
+    answerKey = setAnswers();
+    return answerKey;
 }
 
 var valid = true;
+
 function endlessWrong() {
     let answerKey;
     currentquestion += 1
@@ -334,6 +301,7 @@ function endlessWrong() {
 
 
 var timer;
+
 function endlessTimer() {
     if (valid == false) {
         document.getElementById("countdown").innerHTML = "DONE";
@@ -352,7 +320,7 @@ function endlessTimer() {
         if (time == 0) {
             clearInterval(timer);
             answerKey = endlessWrong(); // If they run out of time, move on to the next question.
-            endlessTimer(); 
+            endlessTimer();
             return answerKey;
         }
     }

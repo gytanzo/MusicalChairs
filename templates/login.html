@@ -1,42 +1,43 @@
-<!DOCTYPE html>    
-<html>    
-<head>    
-    <title>Login Form</title>    
-    <link rel="stylesheet" type="text/css" href="static\login_style.css">    
-</head>    
-<body>    
-    <h2>Login Page</h2><br>    
-    <div class="login">    
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flashes>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Form</title>
+    <link rel="stylesheet" type="text/css" href="static\login_style.css">
+</head>
+
+<body>
+    <h2>Login Page</h2><br>
+    <div class="login">
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul class=flashes>
             {% for message in messages %}
-                <li>{{ message }}</li>
+            <li>{{ message }}</li>
             {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
-    <form id="login" method="post" action="{{ url_for("login")}}">    
-        <label><b>User Name     
+        </ul>
+        {% endif %} {% endwith %}
+        <form id="login" method="post" action="{{ url_for(" login ")}}">
+            <label><b>User Name     
         </b>    
-        </label>    
-        <input type="text" name="Uname" id="Uname" placeholder="Username">    
-        <br><br>    
-        <label><b>Password     
+        </label>
+            <input type="text" name="Uname" id="Uname" placeholder="Username">
+            <br><br>
+            <label><b>Password     
         </b>    
-        </label>    
-        <input type="Password" name="Pass" id="Pass" placeholder="Password">    
-        <br><br>    
-        <button type="submit" name="log" id="log">Login </button>      
-        <br><br>    
-        <a href="{{ url_for('signup') }}" name="a" id="a" class="navbar-item">
-            Sign Up</a> 
-                         
-        <br><br>    
-           
-        <br><br>    
-          
-    </form>     
-</div>    
-</body>    
-</html>     
+        </label>
+            <input type="Password" name="Pass" id="Pass" placeholder="Password">
+            <br><br>
+            <button type="submit" name="log" id="log">Login </button>
+            <br><br>
+            <a href="{{ url_for('signup') }}" name="a" id="a" class="navbar-item">
+            Sign Up</a>
+
+            <br><br>
+
+            <br><br>
+
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,138 +1,140 @@
-body { 
-	margin: 0; 
-	background-color: rgb(218, 218, 218);
+body {
+    margin: 0;
+    background-color: rgb(218, 218, 218);
 }
 
 .navbar {
-	overflow: hidden;
-	background-color: rgb(90, 90, 90);
-	position: fixed;
-	top: 0;
-	width: 100%;
+    overflow: hidden;
+    background-color: rgb(90, 90, 90);
+    position: fixed;
+    top: 0;
+    width: 100%;
 }
 
 .navbar a {
-	float: left;
-	display: block;
-	color: #ffffff;
-	text-align: center;
-	padding: 14px 16px;
-	font-size: 17px;
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 17px;
 }
 
 .navbar a:hover {
-	background: rgb(218, 218, 218);
-	color: black;
+    background: rgb(218, 218, 218);
+    color: black;
 }
 
 .section {
-	overflow: hidden;
-	margin-top: 70px;
+    overflow: hidden;
+    margin-top: 70px;
 }
 
 .timer {
-	padding: 16px;
-	width: 250px;
-	height: 250px;
-	border-radius: 50%;
-	color:rgb(9, 207, 9);
-	font-size: 64px;
-	background-color: white;
-	text-align: center;
-	margin-left: 10px;
+    padding: 16px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    color: rgb(9, 207, 9);
+    font-size: 64px;
+    background-color: white;
+    text-align: center;
+    margin-left: 10px;
 }
 
 .timer:hover {
-	background-color: rgb(190, 190, 190);
+    background-color: rgb(190, 190, 190);
 }
 
 .scorebox {
-	background-color:rgb(255, 255, 255);
-	width: 350px;
-	height:150px;
-	border-top-left-radius:20px;
-	border-top-right-radius:20px;
-	border-bottom-left-radius:20px;
-	border-bottom-right-radius:20px;
-	text-align: center;
-	font-size: 36px;
-	line-height: 75px;
-	margin-right: 10px;
+    background-color: rgb(255, 255, 255);
+    width: 350px;
+    height: 150px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    text-align: center;
+    font-size: 36px;
+    line-height: 75px;
+    margin-right: 10px;
 }
 
 .questionsRemaining {
-	color:rgba(0, 0, 0, 1);
-	text-align:center;
-	font-size:36px;
-	letter-spacing:0;
+    color: rgba(0, 0, 0, 1);
+    text-align: center;
+    font-size: 36px;
+    letter-spacing: 0;
 }
+
 .score {
-	color:rgba(0, 0, 0, 1);
-	text-align:center;
-	font-size:64px;
-	letter-spacing:0;
+    color: rgba(0, 0, 0, 1);
+    text-align: center;
+    font-size: 64px;
+    letter-spacing: 0;
 }
 
 .main {
-	padding: 16px;
-	margin-top: 30px;
-	justify-content: center;
+    padding: 16px;
+    margin-top: 30px;
+    justify-content: center;
 }
 
 .song_button {
-	border: none;
-	display: block;
-	font-size: 36px;
-	margin: 0 auto;
-	cursor: pointer;
-	transition-duration: 0.4s;
-	border-radius: 10px;
-	height: 100px;
-	width: 555px;
-	text-align: left;
-	text-indent: 20px;
+    border: none;
+    display: block;
+    font-size: 36px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    border-radius: 10px;
+    height: 100px;
+    width: 555px;
+    text-align: left;
+    text-indent: 20px;
 }
 
 .question_box {
-	display: inline-block;
-	line-height: 0px;
+    display: inline-block;
+    line-height: 0px;
 }
 
 .song1 {
-	background-color: rgb(0, 162, 255);
-	color: white;
+    background-color: rgb(0, 162, 255);
+    color: white;
 }
 
 .song1:hover {
-	background-color: rgb(49, 179, 255);
-	color: white;
+    background-color: rgb(49, 179, 255);
+    color: white;
 }
 
 .song2 {
-	background-color: rgb(0, 162, 255);
-	color: white;
+    background-color: rgb(0, 162, 255);
+    color: white;
 }
 
 .song2:hover {
-	background-color: rgb(49, 179, 255);
-	color: white;
+    background-color: rgb(49, 179, 255);
+    color: white;
 }
+
 .song3 {
-	background-color: rgb(0, 162, 255);
-	color: white;
+    background-color: rgb(0, 162, 255);
+    color: white;
 }
 
 .song3:hover {
-	background-color: rgb(49, 179, 255);
-	color: white;
+    background-color: rgb(49, 179, 255);
+    color: white;
 }
 
 .song4 {
-	background-color: rgb(0, 162, 255);
-	color: white;
+    background-color: rgb(0, 162, 255);
+    color: white;
 }
 
 .song4:hover {
-	background-color: rgb(49, 179, 255);
-	color: white;
-}  
+    background-color: rgb(49, 179, 255);
+    color: white;
+}

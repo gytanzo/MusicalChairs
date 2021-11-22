@@ -1,61 +1,52 @@
 <!DOCTYPE html>>
 <html>
+
 <head>
     <link rel="stylesheet" href="../static/endofgame.css">
     <script type="text/javascript" src="../static/game.js"></script>
 </head>
 
 <body>
-<div class="navbar">
-    <a href="index.html" style="text-decoration: none;">Home</a>
-    <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
-</div>
-<div class="main">
-    <div class="EndOfGamebackground">
-                <span class="EndOfGameTitle">
-                    Congratulations!</span>
-        <br>
-        <span class="EndOfGamePageText">
-            <span id="finalScore">Total Points: 0</span><br>
-            Song 1:<span id="song1"></span><br>
-            Song 2:<span id="song2"></span><br>
-            Song 3:<span id="song3"></span><br>
-            Song 4:<span id="song4"></span><br>
-            Song 5:<span id="song5"></span><br>
-            Song 6:<span id="song6"></span><br>
-            Song 7:<span id="song7"></span><br>
-            Song 8:<span id="song8"></span><br>
-            Song 9:<span id="song9"></span><br>
-            Song 10:<span id="song10"></span><br>
-                </span>
-        <a href="playgame.html" style="text-decoration: none;">
-            <button class="button play_button">Play Again</button>
-        </a>
+    <div class="navbar">
+        <a href="index.html" style="text-decoration: none;">Home</a>
+        <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
     </div>
-</div>
+    <div class="main">
+        <div class="EndOfGamebackground">
+            <span class="EndOfGameTitle">
+                    Congratulations!</span>
+            <br>
+            <span class="EndOfGamePageText">
+            <span id="finalScore">Total Points: 0</span><br> Song 1:<span id="song1"></span><br> Song 2:<span id="song2"></span><br> Song 3:<span id="song3"></span><br> Song 4:<span id="song4"></span><br> Song 5:<span id="song5"></span><br>            Song 6:<span id="song6"></span><br> Song 7:<span id="song7"></span><br> Song 8:<span id="song8"></span><br> Song 9:<span id="song9"></span><br> Song 10:<span id="song10"></span><br>
+            </span>
+            <a href="playgame.html" style="text-decoration: none;">
+                <button class="button play_button">Play Again</button>
+            </a>
+        </div>
+    </div>
 
-<script>
-    window.onload = function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('finalScore').innerHTML = "Total Points: " + urlParams.get("score");
+    <script>
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            document.getElementById('finalScore').innerHTML = "Total Points: " + urlParams.get("score");
 
-        fetch("../static/songs.json")
-            .then(response => {
-                return response.json();
-            })
-            .then(data => {
-                for (let i = 1; i <= 10; i++) {
-                    const x = "song" + i;
+            fetch("../static/songs.json")
+                .then(response => {
+                    return response.json();
+                })
+                .then(data => {
+                    for (let i = 1; i <= 10; i++) {
+                        const x = "song" + i;
 
-                    const songNum = urlParams.get(i-1);
-                    const songData = data[songNum-1];
+                        const songNum = urlParams.get(i - 1);
+                        const songData = data[songNum - 1];
 
-                    document.getElementById(x).innerHTML = " " + songData.Correct + " by " + songData.Artist;
-                }
-            })
+                        document.getElementById(x).innerHTML = " " + songData.Correct + " by " + songData.Artist;
+                    }
+                })
 
-    }
-</script>
+        }
+    </script>
 </body>
 
 </html>

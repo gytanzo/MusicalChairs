@@ -45,7 +45,7 @@ body {
 .play_button {
     background-color: rgb(0, 162, 255);
     color: white;
-    position:absolute;
+    position: absolute;
     left: calc(50% - 300px/2 + 0.5px);
     top: calc(50% - 325px/2 + 364px);
 }
@@ -57,6 +57,7 @@ body {
 
 
 /* Gray rectangle on How to Play page */
+
 .EndOfGamebackground {
     position: absolute;
     width: 945px;
@@ -65,8 +66,11 @@ body {
     top: calc(50% - 700px/2 + 28.5px);
     background: #C4C4C4;
 }
+
+
 /* How to Play */
-.EndOfGameTitle{
+
+.EndOfGameTitle {
     position: absolute;
     width: 266px;
     height: 59px;
