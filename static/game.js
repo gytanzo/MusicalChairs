@@ -114,6 +114,7 @@ function countdownTime() {
 
 function calculateScore(prevScore) {
     scoreMod = 1.0;
+    // Probably replace this with checking the database once that's working. 
     if (!document.getElementById("Genre 1").checked) scoreMod -= .1;
     if (!document.getElementById("Genre 2").checked) scoreMod -= .1;
     if (!document.getElementById("Genre 3").checked) scoreMod -= .1;
@@ -123,8 +124,8 @@ function calculateScore(prevScore) {
     // Calculated Score = (1*e^.1535t)*scoreMod, where t = number of seconds remaining and scoreMod is a value between .6-1.0 based on the amount of genres selected. 
     var time = parseInt(document.getElementById("countdown").innerHTML);
     var a = .1535 * time // .1535t
-    var b = Math.round(1 * Math.exp(a)); // 1*e^.1535t
-    var c = b * scoreMod; // (1*e^.1535t)*scoreMod
+    var b = Math.exp(a); // 1*e^.1535t
+    var c = Math.round(b * scoreMod); // (1*e^.1535t)*scoreMod
     var newScore = prevScore + c; // prevScore + (1*e^.1535t)*scoreMod
     return newScore;
 }
@@ -141,8 +142,39 @@ function randomIntFromInterval(min, max) { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+// Source: https://stackoverflow.com/questions/6454198/check-if-a-value-is-within-a-range-of-numbers
+function between(x, min, max) { // min and max included
+    return x >= min && x <= max;
+}
+
+// Source: https://masteringjs.io/tutorials/fundamentals/compare-arrays
+function arrayEquals(a, b) {
+    return Array.isArray(a) &&
+        Array.isArray(b) &&
+        a.length === b.length &&
+        a.every((val, index) => val === b[index]);
+}
+
+// Returns the row of the csv file. 
+function getSong() {
+    var rows = []; // List of rows that the program will randomly pick from 
+
+    // Again, this probably gets replaced with checking the database once that's operational. 
+    if (document.getElementById("Genre 1").checked) rows.push(randomIntFromInterval(0, 19));
+    if (document.getElementById("Genre 2").checked) rows.push(randomIntFromInterval(20, 39));
+    if (document.getElementById("Genre 3").checked) rows.push(randomIntFromInterval(40, 59));
+    if (document.getElementById("Genre 4").checked) rows.push(randomIntFromInterval(60, 79));
+    if (document.getElementById("Genre 5").checked) rows.push(randomIntFromInterval(80, 99));
+
+    // Generate a value representing which of these random numbers the program will play. 
+    var rowChoice = randomIntFromInterval(0, rows.length - 1); // We subtract 1 so that the generated value is an index. 
+
+    // Finally, return the "random" song. 
+    return rows[rowChoice];
+}
+
 function setAnswers() {
-    var row = randomIntFromInterval(0, 39); // Grab the CSV row the player will be asked. 
+    var row = getSong(); // Get the song based on the user's settings.  
     var songNumber = (row + 1).toString(); // This is how the songs array that contains the previously played songs handles row numbers
 
     while (songs.includes(songNumber)) { // If a song that has already been played has been generated
