@@ -1,51 +1,87 @@
 <!DOCTYPE html>>
 <html>
-    <head>
-        <link rel="stylesheet" href="../static/profile.css">
-    </head>
 
-    <body>
-        <div class="navbar">
-            <a href="index.html" style="text-decoration: none;">Home</a>
-            <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
-        </div>
-        <div class="main"></div>
-        <div class="account_box"></div>
-        <div class="account_information_box"></div>
-            <span  class="account_info_text">Information</span>
-            <span  class="account_info_name">Account name:
-            <br>
-            {{session.username}}</span>
-            <!--<span  class="account_info_email">Account Email: SandyGamer@gmail.com</span> -->
-        <!-- To be Determined for usage. For now, we will just comment it out.-->
-        <!--<div class="linkbox"></div>
+<head>
+    <link rel="stylesheet" href="../static/profile.css">
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="index.html" style="text-decoration: none;">Home</a>
+        <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
+    </div>
+    <div class="main"></div>
+    <div class="account_box"></div>
+    <div class="account_information_box"></div>
+    <span class="account_info_text">Information</span>
+    <span class="account_info_name">Account name:
+        <br>
+        {{session.username}}</span>
+    <!--<span  class="account_info_email">Account Email: SandyGamer@gmail.com</span> -->
+    <!-- To be Determined for usage. For now, we will just comment it out.-->
+    <!--<div class="linkbox"></div>
             <span  class="link_text">LINK ACCOUNT</span>
             -->
-        <div class="spotlogo"></div>
-        <div class="stats_box"></div>
-        <div class="statistics"></div>
-            <span  class="statstext">Statistics</span>
-        <div class="scorebox"></div>
-        <a href="/logout" style="text-decoration: none;">
+    <div id="genre_select" class="genre-checklist" tabindex="100">
+        <span class="anchor">Genre Select</span>
+        <ul class="items">
+            <li><input type="checkbox" id="Genre 1" />Genre 1 </li>
+            <li><input type="checkbox" id="Genre 2" />Genre 2</li>
+            <li><input type="checkbox" id="Genre 3" />Genre 3 </li>
+            <li><input type="checkbox" id="Genre 4" />Genre 4 </li>
+            <li><input type="checkbox" id="Genre 5" />Genre 5 </li>
+        </ul>
+    </div>
+    <div class="spotlogo"></div>
+    <div class="stats_box"></div>
+    <div class="statistics"></div>
+    <span class="statstext">Statistics</span>
+    <div class="scorebox"></div>
+    <a href="/logout" style="text-decoration: none;">
         <div class="logbox"></div>
-            <span class="edit_logtext">LOGOUT</span>
-        </a>
-        <div class="matchbox"></div>
-            <span  class="hiscore_text">Highest Score:</span>
-            <span  class="hiscore">{{ hi_score }}</span>
-        <div class="matchtext"></div>
-            <span  class="match_text">Match History</span>
-        <div class="prevscores"></div>
-        <span  class="e11_77">{{ game_one }}</span>
-        <span  class="e11_78">{{ game_three }}</span>
-        <span  class="e11_79">{{ game_four }}</span>
-        <span  class="e11_80">{{ game_two }}</span>
-        <span  class="e11_81">{{ game_five }}</span>
-        <span  class="e11_88">{{ score_one }}</span>
-        <span  class="e11_89">{{ score_three }}</span>
-        <span  class="e11_90">{{ score_four }}</span>
-        <span  class="e11_91">{{ score_two }}</span>
-        <span  class="e11_92">{{ score_five }}</span>
-    </body>
-    
+        <span class="edit_logtext">LOGOUT</span>
+    </a>
+    <div class="matchbox"></div>
+    <span class="hiscore_text">Highest Score:</span>
+    <span class="hiscore">{{ hi_score }}</span>
+    <div class="matchtext"></div>
+    <span class="match_text">Match History</span>
+    <div class="prevscores"></div>
+    <span class="e11_77">{{ game_one }}</span>
+    <span class="e11_78">{{ game_three }}</span>
+    <span class="e11_79">{{ game_four }}</span>
+    <span class="e11_80">{{ game_two }}</span>
+    <span class="e11_81">{{ game_five }}</span>
+    <span class="e11_88">{{ score_one }}</span>
+    <span class="e11_89">{{ score_three }}</span>
+    <span class="e11_90">{{ score_four }}</span>
+    <span class="e11_91">{{ score_two }}</span>
+    <span class="e11_92">{{ score_five }}</span>
+</body>
+
+<script>
+    var checkList = document.getElementById('genre_select');
+    checkList.getElementsByClassName('anchor')[0].onclick = function(evt) {
+        if (checkList.classList.contains('visible'))
+            checkList.classList.remove('visible');
+        else
+            checkList.classList.add('visible');
+    }
+
+    /* In the future, I want this function to check the database and set the boxes 
+    /* depending on what genres the user has picked. It should also be able to send 
+    /* data *to* the database, in that if a user manually unselects a box it gets 
+    /* reflected in the databas itself. For now, the boxes are hardcoded. */
+
+    window.onload = setBoxes();
+
+    function setBoxes() {
+        document.getElementById("Genre 1").checked = false;
+        document.getElementById("Genre 2").checked = true;
+        document.getElementById("Genre 3").checked = false;
+        document.getElementById("Genre 4").checked = true;
+        document.getElementById("Genre 5").checked = true;
+    }
+</script>
+
 </html>
