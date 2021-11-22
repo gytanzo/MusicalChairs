@@ -165,7 +165,7 @@ function setAnswers() {
     var songNumber = (row + 1).toString(); // This is how the songs array that contains the previously played songs handles row numbers
 
     while (songs.includes(songNumber)) { // If a song that has already been played has been generated
-        row = randomIntFromInterval(0, 39); // Generate new number
+        row = getSong(); // Generate new number
         songNumber = (row + 1).toString(); // Update songsNumber so we can make sure this new song is also unique
     }
 
