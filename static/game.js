@@ -113,11 +113,19 @@ function countdownTime() {
 }
 
 function calculateScore(prevScore) {
-    // Calculated Score = 1*e^(.1535t), where t = number of seconds remaining
+    scoreMod = 1.0;
+    if (!document.getElementById("Genre 1").checked) scoreMod -= .1;
+    if (!document.getElementById("Genre 2").checked) scoreMod -= .1;
+    if (!document.getElementById("Genre 3").checked) scoreMod -= .1;
+    if (!document.getElementById("Genre 4").checked) scoreMod -= .1;
+    if (!document.getElementById("Genre 5").checked) scoreMod -= .1;
+
+    // Calculated Score = (1*e^.1535t)*scoreMod, where t = number of seconds remaining and scoreMod is a value between .6-1.0 based on the amount of genres selected. 
     var time = parseInt(document.getElementById("countdown").innerHTML);
     var a = .1535 * time // .1535t
     var b = Math.round(1 * Math.exp(a)); // 1*e^.1535t
-    var newScore = prevScore + b; // prevScore + 1e^.1535t
+    var c = b * scoreMod; // (1*e^.1535t)*scoreMod
+    var newScore = prevScore + c; // prevScore + (1*e^.1535t)*scoreMod
     return newScore;
 }
 
