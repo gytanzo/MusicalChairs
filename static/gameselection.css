@@ -27,7 +27,8 @@ body {
 
 .main {
     padding: 16px;
-    margin-top: 30px;
+    margin-top: 50px;
+    text-align: center;
 }
 
 .button {
@@ -35,8 +36,29 @@ body {
     font-size: 36px;
     margin: 0 auto;
     cursor: pointer;
+    display: inline-block;
     transition-duration: 0.4s;
     border-radius: 10px;
     height: 450px;
     width: 300px;
+}
+
+.playgame_button {
+    background-color: rgba(0, 162, 255);
+    color: white;
+}
+
+.playgame_button:hover {
+    background-color: rgb(49, 179, 255);
+    color: white;
+}
+
+.endlessgame_button {
+    background-color: rgba(0, 162, 255);
+    color: white;
+}
+
+.endlessgame_button:hover {
+    background-color: rgb(49, 179, 255);
+    color: white;
 }
