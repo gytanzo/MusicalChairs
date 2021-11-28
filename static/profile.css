@@ -65,7 +65,7 @@
 	position:absolute;
 	left:1121px;
 	top:19px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:40px;
 	letter-spacing:0;
@@ -77,7 +77,7 @@
 	position:absolute;
 	left:1181px;
 	top:28px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:24px;
 	letter-spacing:0;
@@ -155,7 +155,7 @@
 	position:absolute;
 	left:681px;
 	top:852px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:40px;
 	letter-spacing:0;
@@ -167,7 +167,7 @@
 	position:absolute;
 	left:614px;
 	top:667px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:40px;
 	letter-spacing:0;
@@ -207,7 +207,7 @@
 	position:absolute;
 	left:52px;
 	top:422px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:36px;
 	letter-spacing:0;
@@ -219,7 +219,7 @@
 	position:absolute;
 	left:89px;
 	top:532px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:36px;
 	letter-spacing:0;
@@ -240,7 +240,7 @@
 	position:absolute;
 	left:212px;
 	top:767px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -278,7 +278,7 @@
 	position:absolute;
 	left:818px;
 	top:116px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:72px;
 	letter-spacing:0;
@@ -309,7 +309,7 @@
 	position:absolute;
 	left:89px;
 	top:647px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -329,7 +329,7 @@
 	position:absolute;
 	left:807px;
 	top:249px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -341,7 +341,7 @@
 	position:absolute;
 	left:792px;
 	top:308px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -361,7 +361,7 @@
 	position:absolute;
 	left:829px;
 	top:402px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -381,7 +381,7 @@
 	position:absolute;
 	left:788px;
 	top:482px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
@@ -424,7 +424,7 @@ body {
 	position:absolute;
 	left:792px;
 	top:488px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:42px;
 	letter-spacing:0;
@@ -436,7 +436,7 @@ body {
 	position:absolute;
 	left:792px;
 	top:610px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:42px;
 	letter-spacing:0;
@@ -448,7 +448,7 @@ body {
 	position:absolute;
 	left:792px;
 	top:674px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:42px;
 	letter-spacing:0;
@@ -460,7 +460,7 @@ body {
 	position:absolute;
 	left:792px;
 	top:549px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:42px;
 	letter-spacing:0;
@@ -472,7 +472,7 @@ body {
 	position:absolute;
 	left:792px;
 	top:735px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:42px;
 	letter-spacing:0;
@@ -484,7 +484,7 @@ body {
 	position:absolute;
 	left:1144px;
 	top:488px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
 	font-size:42px;
 	letter-spacing:0;
@@ -496,7 +496,7 @@ body {
 	position:absolute;
 	left:1144px;
 	top:610px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
 	font-size:42px;
 	letter-spacing:0;
@@ -508,7 +508,7 @@ body {
 	position:absolute;
 	left:1144px;
 	top:674px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
 	font-size:42px;
 	letter-spacing:0;
@@ -520,7 +520,7 @@ body {
 	position:absolute;
 	left:1144px;
 	top:549px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
 	font-size:42px;
 	letter-spacing:0;
@@ -532,7 +532,7 @@ body {
 	position:absolute;
 	left:1144px;
 	top:735px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
 	font-size:42px;
 	letter-spacing:0;

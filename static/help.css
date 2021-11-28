@@ -4,6 +4,7 @@ body {
 }
 
 .navbar {
+	font-family: Arial, Helvetica, sans-serif;
 	overflow: hidden;
 	background-color: rgb(90, 90, 90);
 	position: fixed;
@@ -26,6 +27,7 @@ body {
 }
 
 .main {
+	font-family: Arial, Helvetica, sans-serif;
 	padding: 16px;
 	margin-top: 30px;
 }
@@ -58,6 +60,7 @@ body {
 
 /* Gray rectangle on How to Play page */
 .helpbackground {
+	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
 	width: 945px;
 	height: 700px;
@@ -67,6 +70,7 @@ body {
 }
 /* How to Play */
 .helpHowtoPlayTitle{
+	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
 	width: 266px;
 	height: 59px;
@@ -86,6 +90,7 @@ body {
 /* Click “Play” Select the Game Mode Listen to the song Guess which song is being played 30 seconds will be given to guess each song. A correct answer will award 1 point. A wrong answer will award no points. */
 
 .helpPageText {
+	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
 	width: 774px;
 	height: 405px;
