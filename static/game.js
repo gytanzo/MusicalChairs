@@ -88,7 +88,7 @@ function storeEndlessScore(score) {
         }
         else { console.log("There was an error posting your score") }
     }
-    req.open('POST', '/endlessstore/'+score, false);
+    req.open('POST', '/endlessStore/'+score, false);
     req.send(score);
 }
 

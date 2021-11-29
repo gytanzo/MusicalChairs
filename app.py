@@ -230,7 +230,7 @@ def storeScore(score):
     # Return status message to affirm POST received.
     return 'Score received!'
 
-@app.route('/endlessstore/<string:score>', methods=['POST', 'GET'])
+@app.route('/endlessStore/<string:score>', methods=['POST', 'GET'])
 def storeEndlessScore(score):
     score = json.loads(score)
     print(score)
