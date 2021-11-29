@@ -193,6 +193,30 @@ def storeScore(score):
     # Return status message to affirm POST received.
     return 'Score received!'
 
+@app.route('/enlessstore/<string:score>', methods=['POST', 'GET'])
+def storeScore(score):
+    score = json.loads(score)
+    print(score)
+    colScores = db.accounts.endlessScores
+    curDate = datetime.now().strftime("%m/%d/%Y at %H:%M:%S") # Get current time to record game date
+    user_exists = colScores.find_one({'name': session['username']})
+    if not user_exists:
+        newScores = {"name": session['username'],
+                     "scores": [{"date": curDate, "score": score}],
+                     "highscore": {"date": curDate, "score": score}}
+        colScores.insert_one(newScores)
+    else:
+        curScores = colScores.find({'name': session['username']})[0]['scores']
+        newScore = {"date": curDate, "score": score}
+        curScores.insert(0, newScore)
+        # Update scores list with most recent game
+        colScores.update_one({'name': session['username']}, {'$set': {'scores': curScores}})
+        # Update high score if necessary
+        if score > colScores.find({'name': session['username']})[0]['highscore']['score']:
+            colScores.update_one({'name': session['username']}, {'$set': {'highscore': {'date': curDate, 'score': score}}})
+    # Return status message to affirm POST received.
+    return 'Score received!'
+
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
     port = sys.argv[1] if len(sys.argv) > 1 else 8000

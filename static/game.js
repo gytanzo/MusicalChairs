@@ -79,6 +79,20 @@ function storeScore(score) {
     req.send(score);
 }
 
+function storeEndlessScore(score) {
+    var req = new XMLHttpRequest();
+    score = JSON.stringify(score)
+    if (req.readyState === XMLHttpRequest.DONE) {
+        if (req.status === 200) {
+            console.log(req.responseText)
+        }
+        else { console.log("There was an error posting your score") }
+    }
+    req.open('POST', '/endlessstore/'+score, false);
+    req.send(score);
+}
+
+
 var timer;
 function countdownTime() {
     if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.~
@@ -328,8 +342,6 @@ function endlessWrong() {
     let answerKey;
     currentquestion += 1
     valid = false;
-    // Sends score to backend (but not doing it for endless right now)
-    // storeScore(score);
 }
 
 
@@ -337,8 +349,9 @@ var timer;
 function endlessTimer() {
     if (valid == false) {
         document.getElementById("countdown").innerHTML = "DONE";
+        storeEndlessScore(score);
         window.location.href = "endlessendofgame.html?score=" + score;
-        return; // This doesn't stop the music, which I guess it should, but that's much more work to accomplish. This is just a simple solution until Andrew makes a post-game page. 
+        return;
     }
 
     var time = 31;
