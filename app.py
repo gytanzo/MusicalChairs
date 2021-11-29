@@ -86,7 +86,7 @@ def leaderboard():
         highestScores = allScores.find().sort('highscore.score', -1)
         # Logic for grabbing top ten scores / or til end of document
         counter, limit = 0, 0
-        length = allScores.count()
+        length = allScores.count_documents({})
         if length > 10:
             limit = 10
         else:
@@ -123,7 +123,7 @@ def endlessleaderboard():
         highestScores = allScores.find().sort('highscore.score', -1)
         # Logic for grabbing top ten scores / or til end of document
         counter, limit = 0, 0
-        length = allScores.count()
+        length = allScores.count_documents({})
         if length > 10:
             limit = 10
         else:
