@@ -67,6 +67,7 @@ body {
 	left: calc(50% - 945px/2 - 0.5px);
 	top: calc(50% - 700px/2 + 28.5px);
 	background: #C4C4C4;
+	border-radius: 20px;
 }
 /* How to Play */
 .helpHowtoPlayTitle{
