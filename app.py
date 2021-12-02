@@ -47,6 +47,19 @@ def login():
             return render_template('login.html')
     return render_template('login.html')
 
+@app.route('/search.html', methods=["GET", "POST"])
+def search():
+    if request.method == "POST":
+        user = request.form.get("name")
+        if not accounts.find_one({'name': user}):
+            flash('User not found! Try another user')
+            return render_template('search.html')
+        else:
+            userStr = '/profile/' + user
+            print(userStr)
+            return redirect(userStr)
+    return render_template('search.html')
+
 @app.route('/help.html')
 def helpPage():
     return render_template('help.html')
@@ -99,7 +112,6 @@ def leaderboard():
             counter = counter + 1
             if counter == limit:
                 break
-
         # Another monstrous return statement. Returning template AND top ten scores with names and dates
         return render_template('leaderboard.html',
                                u1=n[0], u2=n[1], u3=n[2], u4=n[3], u5=n[4], u6=n[5], u7=n[6], u8=n[7], u9=n[8], u10=n[9],
@@ -174,6 +186,34 @@ def index():
     if 'username' in session:
         return render_template('index.html')
     return redirect('/')
+
+# Logic for viewing another person's profile page
+@app.route('/profile/<string:username>', methods=["GET", "POST"])
+def otherProfile(username):
+    # If it is someone's own profile, redirect them to their profile
+    if 'username' in session:
+        if session['username'] == username:
+            return redirect('/profile.html')
+    # Logic for attempting to view a non-existing profile
+    exists = accounts.find_one({'name': username})
+    if not exists:
+        return render_template('nonuser.html')
+    # Logic for existing user, show their profile
+    else:
+        # Fetch account information (reused from profile page)
+        scores = [0, 0, 0, 0, 0]
+        games = ["None", "None", "None", "None", "None"]
+        colScores = db.accounts.scores
+        curScores = colScores.find({'name': username})[0]['scores']
+        hi_score = colScores.find({'name': username})[0]['highscore']['score']
+        i = 0
+        while i < len(curScores) and i < 5:
+            games[i] = curScores[i].get('date')
+            scores[i] = curScores[i].get('score')
+            i = i + 1
+        return render_template('otherprofile.html', username=username, g1=games[0], g2=games[1], g3=games[2],
+                               g4=games[3], g5=games[4], s1=scores[0], s2=scores[1], s3=scores[2], s4=scores[3],
+                               s5=scores[4], hiscore=hi_score)
 
 @app.route('/signup.html', methods=["GET", "POST"])
 def signup():

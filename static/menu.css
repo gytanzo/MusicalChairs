@@ -79,3 +79,13 @@ body {
     background-color: rgb(49, 179, 255);
     color: white;
 }
+
+.search_button {
+    background-color: rgba(0, 162, 255);
+    color: white;
+}
+
+.search_button:hover {
+    background-color: rgb(49, 179, 255);
+    color: white;
+}

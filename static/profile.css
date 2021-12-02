@@ -245,16 +245,6 @@
 	font-size:48px;
 	letter-spacing:0;
 }
-.spotlogo { 
-	width:90px;
-	height:90px;
-	position:absolute;
-	left:105px;
-	top:753px;
-	background-image:url(/images/spotifylogo.png);
-	background-repeat:no-repeat;
-	background-size:cover;
-}
 .stats_box { 
 	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
 	width:674px;
