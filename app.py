@@ -47,6 +47,19 @@ def login():
             return render_template('login.html')
     return render_template('login.html')
 
+@app.route('/search.html', methods=["GET", "POST"])
+def search():
+    if request.method == "POST":
+        user = request.form.get("name")
+        if not accounts.find_one({'name': user}):
+            flash('User not found! Try another user')
+            return render_template('search.html')
+        else:
+            userStr = '/profile/' + user
+            print(userStr)
+            return redirect(userStr)
+    return render_template('search.html')
+
 @app.route('/help.html')
 def helpPage():
     return render_template('help.html')

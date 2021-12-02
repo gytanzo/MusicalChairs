@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MusicalChairs | Member Search</title>
+    <link rel="stylesheet" href="../static/search.css">
+    <style>
+        h1 {
+            font-size: 24px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div class="navbar">
+    <a href="index.html" style="text-decoration: none;">Home</a>
+    <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
+</div>
+<div class="search">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+<form id="search" method="post" action="{{ url_for("search")}}">
+<h1>Member Searchbar</h1>
+<input type="text" name="name" id="name" placeholder="Username">
+<br><br>
+<button type="submit" name="log" id="log">Search</button>
+</form>
+</div>
+</body>
+</html>
