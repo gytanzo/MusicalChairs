@@ -19,6 +19,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # Connect to database, database url stored in environment variable
 db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
 accounts = db.accounts.passwords    # contact passwords collection in db
+genre_preferences = db.accounts.genre_preferences # user genre preferences to be updated when a new user creates an account
 
 # Flask delegates this to be current home-screen
 # Current homepage: Login Page
@@ -153,6 +154,8 @@ def signup():
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
             accounts.insert({'name': username, 'password': hashed})
+            preferences = [True, True, True, True, True]
+            genre_preferences.insert_one({'name': username, 'preferences': preferences})
             session['username'] = username
             return redirect('/')
         else:
