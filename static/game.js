@@ -30,7 +30,7 @@ function pressedD(answerKey, preferences) {
 function correct(preferences) {
     let answerKey;
     if (currentquestion < lastquestion) {
-        score = calculateScore(score);
+        score = calculateScore(score, preferences);
         document.getElementById("score").innerHTML = score;
 
         currentquestion += 1
@@ -39,7 +39,7 @@ function correct(preferences) {
         answerKey = setAnswers(preferences);
         return answerKey;
     } else if (currentquestion === lastquestion) {
-        score = calculateScore(score);
+        score = calculateScore(score, preferences);
         document.getElementById("score").innerHTML = score;
         currentquestion += 1
 
@@ -112,14 +112,18 @@ function countdownTime(preferences) {
     return answerKey; // By default, return the answerKey completely unchanged. 
 }
 
-function calculateScore(prevScore) {
+function calculateScore(prevScore, preferences) {
+    preferences = preferences.substring(1, preferences.length - 1); // Source: https://stackoverflow.com/questions/20196088/how-to-remove-the-first-and-the-last-character-of-a-string/20196342
+    preferences = preferences.replace(/\s+/g, ''); // Source: https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
+    preferences = preferences.split(","); 
+    preferences = preferences.map(boolFromStringOtherwiseNull)
+    
     scoreMod = 1.0;
-    // Probably replace this with checking the database once that's working. 
-    if (!document.getElementById("Genre 1").checked) scoreMod -= .1;
-    if (!document.getElementById("Genre 2").checked) scoreMod -= .1;
-    if (!document.getElementById("Genre 3").checked) scoreMod -= .1;
-    if (!document.getElementById("Genre 4").checked) scoreMod -= .1;
-    if (!document.getElementById("Genre 5").checked) scoreMod -= .1;
+    if (!preferences[0]) scoreMod -= .1;
+    if (!preferences[1]) scoreMod -= .1;
+    if (!preferences[2]) scoreMod -= .1;
+    if (!preferences[3]) scoreMod -= .1;
+    if (!preferences[4]) scoreMod -= .1;
 
     // Calculated Score = (1*e^.1535t)*scoreMod, where t = number of seconds remaining and scoreMod is a value between .6-1.0 based on the amount of genres selected. 
     var time = parseInt(document.getElementById("countdown").innerHTML);
