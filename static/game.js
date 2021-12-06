@@ -3,31 +3,31 @@ var currentquestion = 1;
 var lastquestion = 10;
 var songs = [];
 
-function pressedA(answerKey) {
+function pressedA(answerKey, preferences) {
     var value = answerKey[0];
-    if (value == 0) return correct();
-    else return wrong();
+    if (value == 0) return correct(preferences);
+    else return wrong(preferences);
 }
 
-function pressedB(answerKey) {
+function pressedB(answerKey, preferences) {
     var value = answerKey[1];
-    if (value == 0) return correct();
-    else return wrong();
+    if (value == 0) return correct(preferences);
+    else return wrong(preferences);
 }
 
-function pressedC(answerKey) {
+function pressedC(answerKey, preferences) {
     var value = answerKey[2];
-    if (value == 0) return correct();
-    else return wrong();
+    if (value == 0) return correct(preferences);
+    else return wrong(preferences);
 }
 
-function pressedD(answerKey) {
+function pressedD(answerKey, preferences) {
     var value = answerKey[3];
-    if (value == 0) return correct();
-    else return wrong();
+    if (value == 0) return correct(preferences);
+    else return wrong(preferences);
 }
 
-function correct() {
+function correct(preferences) {
     let answerKey;
     if (currentquestion < lastquestion) {
         score = calculateScore(score);
@@ -36,7 +36,7 @@ function correct() {
         currentquestion += 1
         document.getElementById("questionsRemaining").innerHTML = currentquestion + " / " + lastquestion;
 
-        answerKey = setAnswers();
+        answerKey = setAnswers(preferences);
         return answerKey;
     } else if (currentquestion === lastquestion) {
         score = calculateScore(score);
@@ -46,13 +46,13 @@ function correct() {
     }
 }
 
-function wrong() {
+function wrong(preferences) {
     let answerKey;
     if (currentquestion < lastquestion) {
         currentquestion += 1
         document.getElementById("questionsRemaining").innerHTML = currentquestion + " / " + lastquestion;
 
-        answerKey = setAnswers();
+        answerKey = setAnswers(preferences);
         return answerKey;
     } else if (currentquestion === lastquestion) {
         currentquestion += 1
@@ -78,7 +78,7 @@ function storeScore(score) {
 
 var timer;
 
-function countdownTime() {
+function countdownTime(preferences) {
     if (currentquestion == 11) { // If the user has answered all ten questions stop resetting the timer.~
         document.getElementById("countdown").innerHTML = "DONE";
         storeScore(score);
@@ -103,7 +103,7 @@ function countdownTime() {
         document.getElementById("countdown").innerHTML = time;
         if (time == 0) {
             clearInterval(timer);
-            answerKey = wrong(); // If they run out of time, move on to the next question.
+            answerKey = wrong(preferences); // If they run out of time, move on to the next question.
             countdownTime();
             return answerKey;
         }
@@ -143,15 +143,20 @@ function randomIntFromInterval(min, max) { // min and max included
 }
 
 // Returns the row of the JSON file. 
-function getSong() {
+function getSong(preferences) {
+    preferences = preferences.substring(1, preferences.length - 1); // Source: https://stackoverflow.com/questions/20196088/how-to-remove-the-first-and-the-last-character-of-a-string/20196342
+    preferences = preferences.replace(/\s+/g, ''); // Source: https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
+    preferences = preferences.split(","); 
+    preferences = preferences.map(boolFromStringOtherwiseNull)
+
     var rows = []; // List of rows that the program will randomly pick from 
 
     // Again, this probably gets replaced with checking the database once that's operational. 
-    if (document.getElementById("Genre 1").checked) rows.push(randomIntFromInterval(0, 19));
-    if (document.getElementById("Genre 2").checked) rows.push(randomIntFromInterval(20, 39));
-    if (document.getElementById("Genre 3").checked) rows.push(randomIntFromInterval(40, 59));
-    if (document.getElementById("Genre 4").checked) rows.push(randomIntFromInterval(60, 79));
-    if (document.getElementById("Genre 5").checked) rows.push(randomIntFromInterval(80, 99));
+    if (preferences[0]) rows.push(randomIntFromInterval(0, 19));
+    if (preferences[1]) rows.push(randomIntFromInterval(20, 39));
+    if (preferences[2]) rows.push(randomIntFromInterval(40, 59));
+    if (preferences[3]) rows.push(randomIntFromInterval(60, 79));
+    if (preferences[4]) rows.push(randomIntFromInterval(80, 99));
 
     // Generate a value representing which of these random numbers the program will play. 
     var rowChoice = randomIntFromInterval(0, rows.length - 1); // We subtract 1 so that the generated value is an index. 
@@ -160,12 +165,12 @@ function getSong() {
     return rows[rowChoice];
 }
 
-function setAnswers() {
-    var row = getSong(); // Get the song based on the user's settings.  
+function setAnswers(preferences) {
+    var row = getSong(preferences); // Get the song based on the user's settings.  
     var songNumber = (row + 1).toString(); // This is how the songs array that contains the previously played songs handles row numbers
 
     while (songs.includes(songNumber)) { // If a song that has already been played has been generated
-        row = getSong(); // Generate new number
+        row = getSong(preferences); // Generate new number
         songNumber = (row + 1).toString(); // Update songsNumber so we can make sure this new song is also unique
     }
 
@@ -353,4 +358,11 @@ function endlessTimer() {
     }
 
     return answerKey; // By default, return the answerKey completely unchanged. 
+}
+
+// Source: https://stackoverflow.com/questions/52947238/how-to-parse-true-and-false-strings-in-an-array-to-become-booleans
+function boolFromStringOtherwiseNull(s) {
+    if (s == 'True' || s == 'true') return true
+    if (s == 'False' || s == 'false') return false
+    return null
 }

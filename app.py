@@ -60,7 +60,8 @@ def gameSelection():
 
 @app.route('/playgame.html')
 def gamePage():
-    return render_template('playgame.html')
+    preferences = genre_preferences.find({'name': session['username']})[0]["preferences"]
+    return render_template('playgame.html', preferences=preferences)
 
 @app.route('/endlessgame.html')
 def endlessGame():
