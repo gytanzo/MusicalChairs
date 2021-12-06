@@ -68,6 +68,18 @@
         document.getElementById("dropbox").classList.toggle("show");
     }
 
+    function storeScore(score) {
+        var req = new XMLHttpRequest();
+        score = JSON.stringify(score)
+        if (req.readyState === XMLHttpRequest.DONE) {
+            if (req.status === 200) {
+                console.log(req.responseText)
+            } else { console.log("There was an error posting your score") }
+        }
+        req.open('POST', '/store/' + score, false);
+        req.send(score);
+    }
+
     // Close the dropdown menu if the user clicks outside of it
     window.onclick = function(event) {
         // Check to see if they are clicking the button or its contents
@@ -89,6 +101,22 @@
                     }
                 }
                 // The options should be saved here. 
+                var preferences = []
+                preferences.push(document.getElementById("Genre 1").checked);
+                preferences.push(document.getElementById("Genre 2").checked);
+                preferences.push(document.getElementById("Genre 3").checked);
+                preferences.push(document.getElementById("Genre 4").checked);
+                preferences.push(document.getElementById("Genre 5").checked);
+
+                var req = new XMLHttpRequest();
+                preferences = JSON.stringify(preferences);
+                if (req.readyState === XMLHttpRequest.DONE) {
+                    if (req.status === 200) {
+                        console.log(req.responseText)
+                    } else { console.log("There was an error saving your genre preferences") }
+                }
+                req.open('POST', '/prefpush/' + preferences, false);
+                req.send(preferences)
             }
         }
     }
@@ -120,8 +148,8 @@
 
     // Source: https://stackoverflow.com/questions/52947238/how-to-parse-true-and-false-strings-in-an-array-to-become-booleans
     function boolFromStringOtherwiseNull(s) {
-        if (s == 'True') return true
-        if (s == 'False') return false
+        if (s == 'True' || s == 'true') return true
+        if (s == 'False' || s == 'false') return false
         return null
     }
 </script>

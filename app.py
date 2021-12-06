@@ -194,6 +194,14 @@ def storeScore(score):
     # Return status message to affirm POST received.
     return 'Score received!'
 
+# Posting user genre preferences
+@app.route('/prefpush/<string:preferences>', methods=['POST', 'GET'])
+def postPreferences(preferences):
+    # Accepts string in format "True,True,True,True,True"
+    new_preferences = json.loads(preferences)
+    genre_preferences.update_one({'name': session['username']}, {'$set': {'preferences': new_preferences}})
+    return 'Preferences updated!'
+
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
     port = sys.argv[1] if len(sys.argv) > 1 else 8000
