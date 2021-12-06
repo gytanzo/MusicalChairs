@@ -103,11 +103,26 @@
     window.onload = setBoxes();
 
     function setBoxes() {
-        document.getElementById("Genre 1").checked = true;
-        document.getElementById("Genre 2").checked = true;
-        document.getElementById("Genre 3").checked = false;
-        document.getElementById("Genre 4").checked = false;
-        document.getElementById("Genre 5").checked = false;
+        // Parse the user's genre preferences
+        var preferences = "{{ preferences }}";
+        preferences = preferences.substring(1, preferences.length - 1); // Source: https://stackoverflow.com/questions/20196088/how-to-remove-the-first-and-the-last-character-of-a-string/20196342
+        preferences = preferences.replace(/\s+/g, ''); // Source: https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
+        preferences = preferences.split(","); 
+        preferences = preferences.map(boolFromStringOtherwiseNull)
+
+        // Set the user's boxes
+        document.getElementById("Genre 1").checked = preferences[0];
+        document.getElementById("Genre 2").checked = preferences[1];
+        document.getElementById("Genre 3").checked = preferences[2];
+        document.getElementById("Genre 4").checked = preferences[3];
+        document.getElementById("Genre 5").checked = preferences[4];
+    }
+
+    // Source: https://stackoverflow.com/questions/52947238/how-to-parse-true-and-false-strings-in-an-array-to-become-booleans
+    function boolFromStringOtherwiseNull(s) {
+        if (s == 'True') return true
+        if (s == 'False') return false
+        return null
     }
 </script>
 

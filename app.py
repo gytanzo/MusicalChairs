@@ -117,6 +117,7 @@ def profilePage():
         colScores = db.accounts.scores
         user_exists = colScores.find_one({'name': session['username']})
         if user_exists:
+            preferences = genre_preferences.find({'name': session['username']})[0]["preferences"]
             curScores = colScores.find({'name': session['username']})[0]['scores']
             hi_score = colScores.find({'name': session['username']})[0]['highscore']['score']
             i = 0
@@ -128,7 +129,7 @@ def profilePage():
         # This renders the profile.html and passes the past five games with their dates, plus the hi-score
         return render_template('profile.html', game_one=games[0], game_two=games[1], game_three=games[2], game_four=games[3], game_five=games[4],
                                score_one=scores[0], score_two=scores[1], score_three=scores[2], score_four=scores[3],
-                               score_five=scores[4], hi_score=hi_score)
+                               score_five=scores[4], hi_score=hi_score, preferences=preferences)
     return redirect('/')
 
 @app.route('/index.html')
