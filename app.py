@@ -37,8 +37,6 @@ def login():
             flash('wrong username or password')
             return render_template('login.html')
         hashed = accounts.find( {'name': username})[0]['password']
-        print("printing hashed password")
-        print(hashed)
         if bcrypt.checkpw(password, hashed):
             session['username'] = username
             return redirect('index.html')
@@ -172,7 +170,6 @@ def logout():
 @app.route('/store/<string:score>', methods=['POST', 'GET'])
 def storeScore(score):
     score = json.loads(score)
-    print(score)
     colScores = db.accounts.scores
     curDate = datetime.now().strftime("%m/%d/%Y at %H:%M:%S") # Get current time to record game date
     user_exists = colScores.find_one({'name': session['username']})
