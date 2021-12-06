@@ -1,60 +1,70 @@
 <!DOCTYPE html>>
 <html>
-    <head>
-        <link rel="stylesheet" href="../static/game.css">
-        <script type="text/javascript" src="../static/game.js"></script>
-        <link rel="shortcut icon" href="#">
-    </head>
 
-    <body>
-        <div class="section">
-            <button class="timer" style="float: left;">
+<head>
+    <link rel="stylesheet" href="../static/game.css">
+    <script type="text/javascript" src="../static/game.js"></script>
+    <link rel="shortcut icon" href="#">
+</head>
+
+<body>
+    <div class="section">
+        <button class="timer" style="float: left;">
               <p id="countdown" value="30"></p>
             </button>
-            <div class="scorebox" style="float: right;">
-                <span id="questionsRemaining" class="questionsRemaining">1 / 10</span>
-                <br>
-                <span id="score" class="score">0</span>
-                <span id="answerKey"></span>
-            </div>
+        <div class="scorebox" style="float: right;">
+            <span id="questionsRemaining" class="questionsRemaining">1 / 10</span>
+            <br>
+            <span id="score" class="score">0</span>
+            <span id="answerKey"></span>
         </div>
-        <script> 
-            window.onload = countdownTime();
-        </script>
-        <div class="navbar">
-            <a href="index.html" style="text-decoration: none;">Home</a>
-            <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
-        </div>
-        <div class="main">
-            <button class="song_button song1" onclick="answerKey = pressedA(answerKey); answerKey = countdownTime();">
+    </div>
+    <script>
+        window.onload = countdownTime();
+    </script>
+    <div class="navbar">
+        <a href="index.html" style="text-decoration: none;">Home</a>
+        <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
+    </div>
+    <div class="main">
+        <button class="song_button song1" onclick="answerKey = pressedA(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
                 <span class="question_box">A.</span>
                 <span class="question_box" id="songname1"><span id="A"></span></span>
             </button>
-            <br>
-            <button class="song_button song2" onclick="answerKey = pressedB(answerKey); answerKey = countdownTime();">
+        <br>
+        <button class="song_button song2" onclick="answerKey = pressedB(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
                 <span class="question_box">B.</span>
                 <span class="question_box" id="songname1"><span id="B"></span></span>
             </button>
-            <br>
-            <button class="song_button song3" onclick="answerKey = pressedC(answerKey); answerKey = countdownTime();">
+        <br>
+        <button class="song_button song3" onclick="answerKey = pressedC(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
                 <span class="question_box">C.</span>
                 <span class="question_box" id="songname1"><span id="C"></span></span>
             </button>
-            <br>
-            <button class="song_button song4" onclick="answerKey = pressedD(answerKey); answerKey = countdownTime();">
+        <br>
+        <button class="song_button song4" onclick="answerKey = pressedD(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
                 <span class="question_box">D.</span>
                 <span class="question_box" id="songname1"><span id="D"></span></span>
             </button>
-            <audio id="my_audio"> 
+        <audio id="my_audio"> 
                 <source id="audioSource" src=""></source>
             </audio>
-            <script>
-                let answerKey;
-                window.onload = function () {
-                  answerKey = setAnswers();
-                }
-              </script>
-        </div>
-    </body>
-    
+        <script>
+            let answerKey;
+            window.onload = function() {
+                answerKey = setAnswers("{{ preferences }}");
+            }
+        </script>
+
+        <!--Once the database part is working, this part should be removed. For now, it is meant to simulate the score modifier. 
+            If you leave the first two checked, the program acts like it did before I started implementing this (0-39 are played).  
+            I'm really just doing this until someone explains the database to me.-->
+        <label class="checkbox"><input type="checkbox" id="Genre 1" checked="checked" style="opacity:0; position:absolute; left:9999px;"></label>
+        <label class="checkbox"><input type="checkbox" id="Genre 2" checked="checked" style="opacity:0; position:absolute; left:9999px;"></label>
+        <label class="checkbox"><input type="checkbox" id="Genre 3" style="opacity:0; position:absolute; left:9999px;"></label>
+        <label class="checkbox"><input type="checkbox" id="Genre 4" style="opacity:0; position:absolute; left:9999px;"></label>
+        <label class="checkbox"><input type="checkbox" id="Genre 5" style="opacity:0; position:absolute; left:9999px;"></label>
+    </div>
+</body>
+
 </html>

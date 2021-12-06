@@ -19,6 +19,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 # Connect to database, database url stored in environment variable
 db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
 accounts = db.accounts.passwords    # contact passwords collection in db
+genre_preferences = db.accounts.genre_preferences # user genre preferences to be updated when a new user creates an account
 
 # Flask delegates this to be current home-screen
 # Current homepage: Login Page
@@ -37,8 +38,6 @@ def login():
             flash('wrong username or password')
             return render_template('login.html')
         hashed = accounts.find( {'name': username})[0]['password']
-        print("printing hashed password")
-        print(hashed)
         if bcrypt.checkpw(password, hashed):
             session['username'] = username
             return redirect('index.html')
@@ -74,7 +73,8 @@ def gameSelection():
 
 @app.route('/playgame.html')
 def gamePage():
-    return render_template('playgame.html')
+    preferences = genre_preferences.find({'name': session['username']})[0]["preferences"]
+    return render_template('playgame.html', preferences=preferences)
 
 @app.route('/endlessgame.html')
 def endlessGame():
@@ -167,6 +167,7 @@ def profilePage():
         colScores = db.accounts.scores
         user_exists = colScores.find_one({'name': session['username']})
         if user_exists:
+            preferences = genre_preferences.find({'name': session['username']})[0]["preferences"]
             curScores = colScores.find({'name': session['username']})[0]['scores']
             hi_score = colScores.find({'name': session['username']})[0]['highscore']['score']
             i = 0
@@ -178,7 +179,7 @@ def profilePage():
         # This renders the profile.html and passes the past five games with their dates, plus the hi-score
         return render_template('profile.html', game_one=games[0], game_two=games[1], game_three=games[2], game_four=games[3], game_five=games[4],
                                score_one=scores[0], score_two=scores[1], score_three=scores[2], score_four=scores[3],
-                               score_five=scores[4], hi_score=hi_score)
+                               score_five=scores[4], hi_score=hi_score, preferences=preferences)
     return redirect('/')
 
 @app.route('/index.html')
@@ -232,6 +233,8 @@ def signup():
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
             accounts.insert({'name': username, 'password': hashed})
+            preferences = [True, True, True, True, True]
+            genre_preferences.insert_one({'name': username, 'preferences': preferences})
             session['username'] = username
             return redirect('/')
         else:
@@ -249,7 +252,6 @@ def logout():
 @app.route('/store/<string:score>', methods=['POST', 'GET'])
 def storeScore(score):
     score = json.loads(score)
-    print(score)
     colScores = db.accounts.scores
     curDate = datetime.now().strftime("%m/%d/%Y at %H:%M:%S") # Get current time to record game date
     user_exists = colScores.find_one({'name': session['username']})
@@ -293,6 +295,14 @@ def storeEndlessScore(score):
             colScores.update_one({'name': session['username']}, {'$set': {'highscore': {'date': curDate, 'score': score}}})
     # Return status message to affirm POST received.
     return 'Score received!'
+    
+# Posting user genre preferences
+@app.route('/prefpush/<string:preferences>', methods=['POST', 'GET'])
+def postPreferences(preferences):
+    # Accepts string in format "True,True,True,True,True"
+    new_preferences = json.loads(preferences)
+    genre_preferences.update_one({'name': session['username']}, {'$set': {'preferences': new_preferences}})
+    return 'Preferences updated!'
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
