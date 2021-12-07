@@ -303,45 +303,45 @@ function setAnswers(preferences) {
 
 /* Here is the code for the endless game mode. Uses the same as above with some changes throughout */
 
-function endlesspressedA(answerKey) {
+function endlesspressedA(answerKey, preferences) {
     var value = answerKey[0];
-    if (value == 0) return endlessCorrect();
-    else return endlessWrong();
+    if (value == 0) return endlessCorrect(preferences);
+    else return endlessWrong(preferences);
 }
 
-function endlesspressedB(answerKey) {
+function endlesspressedB(answerKey, preferences) {
     var value = answerKey[1];
-    if (value == 0) return endlessCorrect();
-    else return endlessWrong();
+    if (value == 0) return endlessCorrect(preferences);
+    else return endlessWrong(preferences);
 }
 
-function endlesspressedC(answerKey) {
+function endlesspressedC(answerKey, preferences) {
     var value = answerKey[2];
-    if (value == 0) return endlessCorrect();
-    else return endlessWrong();
+    if (value == 0) return endlessCorrect(preferences);
+    else return endlessWrong(preferences);
 }
 
-function endlesspressedD(answerKey) {
+function endlesspressedD(answerKey, preferences) {
     var value = answerKey[3];
-    if (value == 0) return endlessCorrect();
-    else return endlessWrong();
+    if (value == 0) return endlessCorrect(preferences);
+    else return endlessWrong(preferences);
 }
 
-function endlessCorrect() {
+function endlessCorrect(preferences) {
     let answerKey;
-    score = calculateScore(score);
+    score = calculateScore(score, preferences);
     document.getElementById("score").innerHTML = score;
 
     currentquestion += 1
     document.getElementById("questionsRemaining").innerHTML = currentquestion;
 
-    answerKey = setAnswers();
+    answerKey = setAnswers(preferences);
     return answerKey;
 }
 
 var valid = true;
 
-function endlessWrong() {
+function endlessWrong(preferences) {
     let answerKey;
     currentquestion += 1
     valid = false;
@@ -350,7 +350,7 @@ function endlessWrong() {
 
 var timer;
 
-function endlessTimer() {
+function endlessTimer(preferences) {
     if (valid == false) {
         document.getElementById("countdown").innerHTML = "DONE";
         storeEndlessScore(score);
@@ -368,8 +368,8 @@ function endlessTimer() {
         document.getElementById("countdown").innerHTML = time;
         if (time == 0) {
             clearInterval(timer);
-            answerKey = endlessWrong(); // If they run out of time, move on to the next question.
-            endlessTimer();
+            answerKey = endlessWrong(preferences); // If they run out of time, move on to the next question.
+            endlessTimer(preferences);
             return answerKey;
         }
     }
