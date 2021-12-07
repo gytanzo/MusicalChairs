@@ -118,7 +118,7 @@ function countdownTime(preferences) {
         if (time == 0) {
             clearInterval(timer);
             answerKey = wrong(preferences); // If they run out of time, move on to the next question.
-            countdownTime();
+            countdownTime(preferences);
             return answerKey;
         }
     }
