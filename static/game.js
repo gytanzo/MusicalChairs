@@ -383,3 +383,44 @@ function boolFromStringOtherwiseNull(s) {
     if (s == 'False' || s == 'false') return false
     return null
 }
+
+function clickedTimer(preferences) {
+    preferences = preferences.substring(1, preferences.length - 1); // Source: https://stackoverflow.com/questions/20196088/how-to-remove-the-first-and-the-last-character-of-a-string/20196342
+    preferences = preferences.replace(/\s+/g, ''); // Source: https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
+    preferences = preferences.split(","); 
+    preferences = preferences.map(boolFromStringOtherwiseNull)
+
+    scoreMod = 0;
+    if (!preferences[0]) scoreMod += 10;
+    if (!preferences[1]) scoreMod += 10;
+    if (!preferences[2]) scoreMod += 10;
+    if (!preferences[3]) scoreMod += 10;
+    if (!preferences[4]) scoreMod += 10;
+    scoreMod = scoreMod.toString();
+
+
+    string = "";
+    if (preferences[0]) {
+        if (string == "") string = "Trip Hop";
+    }
+    if (preferences[1]) {
+        if (string == "") string = "EDM";
+        else string = string.concat(", EDM");
+    }
+    if (preferences[2]) {
+        if (string == "") string = "Soft Pop";
+        else string = string.concat(", Soft Pop");
+    }
+    if (preferences[3]) {
+        if (string == "") string = "Indie Rock";
+        else string = string.concat(", Indie Rock");
+    }
+    if (preferences[4]) {
+        if (string == "") string = "Classic Rock"
+        else string = string.concat(", Classic Rock")
+    }
+
+    new_string = "These are the generes you have selected. You currently have a " + scoreMod + "% deduction in points.\nGenres: ";
+    new_string = new_string.concat(string)
+    alert(new_string);
+}
