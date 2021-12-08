@@ -30,8 +30,9 @@
         </div>
         <div class="avibuttons">
         <form id="avatar_upload" method="POST" action="/aviupload" enctype="multipart/form-data">
-            <input class="avatarbtn" type="file" name="avatar" oninput="uploadAvi()">
+            <input id="avi" type="file" accept="image/*" name="avatar" oninput="uploadAvi()" style="display: none">
         </form>
+            <label for="avi" class="avatarbtn">Change Avatar</label>
             <script type="text/javascript">
                 function uploadAvi() {
                     const form = document.getElementById("avatar_upload");
