@@ -30,8 +30,10 @@ h2{
     text-align: center;  
     color: rgb(0,0,0);
     padding: 20px;  
+    font-size: 35px
 }  
 label{  
+    padding-left: 38px;
     color: rgb(0,0,0);
     font-size: 17px;  
 }  
@@ -39,14 +41,14 @@ label{
     width: 300px;  
     height: 30px;  
     border: none;  
-    border-radius: 3px;  
+    border-radius: 10px;  
     padding-left: 8px;  
 }  
 #Pass{  
     width: 300px;  
     height: 30px;  
     border: none;  
-    border-radius: 3px;  
+    border-radius: 10px;  
     padding-left: 8px;  
       
 }  
@@ -56,15 +58,38 @@ label{
     border: none;  
     border-radius: 17px;  
     padding-left: 7px;  
-    color: blue;  
-  
+    background-color: rgb(49, 179, 255);
+    color: white;
+    
+    text-align: center;  
   
 } 
+h4 {
+    display: flex;
+    flex-direction: row;
+}
+  
+h4:before,
+h4:after {
+    content: " ";
+    flex: 1 1;
+    border-bottom: 1px solid rgb(133, 126, 126);
+    margin: auto;
+}
+  
+img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
 
 #a{
-    list-style-type: none;
-    margin: 7;
-    padding-left: 17px; 
-    color: rgb(0,0,255)
+    width: 300px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    background-color: rgb(49, 179, 255);
+    color: white;
   }
  
