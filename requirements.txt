@@ -3,3 +3,5 @@ pymongo
 pymongo[srv]
 bcrypt
 datetime
+flask_pymongo
+PyMongo

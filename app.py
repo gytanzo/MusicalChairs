@@ -4,6 +4,7 @@ import pymongo
 from pymongo import MongoClient
 from flask import Flask, request, redirect, flash, session
 from flask import render_template, render_template_string
+from flask_pymongo import PyMongo
 from datetime import date, datetime
 from operator import itemgetter
 import os
@@ -15,11 +16,16 @@ app = Flask(__name__)
 
 # Secret Key necessary to use for Flask Sessions, created as environment variable "SECRET_KEY"
 app.secret_key = os.environ.get("SECRET_KEY")
+# Setting up MONGO object to set up file share
+app.config['MONGO_URI'] = os.environ.get("DATABASE_URL")
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # File upload limit: 16MB
 
 # Connect to database, database url stored in environment variable
 db = pymongo.MongoClient(os.environ.get("DATABASE_URL"))
 accounts = db.accounts.passwords    # contact passwords collection in db
 genre_preferences = db.accounts.genre_preferences # user genre preferences to be updated when a new user creates an account
+account_avatars = db.accounts.avatars
+mongo = PyMongo(app)
 
 # Flask delegates this to be current home-screen
 # Current homepage: Login Page
@@ -161,6 +167,10 @@ def endlessleaderboard():
 @app.route('/profile.html')
 def profilePage():
     if 'username' in session:
+        # Get URL for avatar stored in mongo
+        avi_loc = account_avatars.find_one({'name': session['username']})
+        avi = avi_loc['avatar_name']
+        print(avi)
         # Logic for displaying recent games/high score
         scores = [0, 0, 0, 0, 0]
         games = ["None", "None", "None", "None", "None"]
@@ -180,7 +190,7 @@ def profilePage():
         # This renders the profile.html and passes the past five games with their dates, plus the hi-score
         return render_template('profile.html', game_one=games[0], game_two=games[1], game_three=games[2], game_four=games[3], game_five=games[4],
                                score_one=scores[0], score_two=scores[1], score_three=scores[2], score_four=scores[3],
-                               score_five=scores[4], hi_score=hi_score, preferences=preferences)
+                               score_five=scores[4], hi_score=hi_score, preferences=preferences, avatar=avi)
     return redirect('/')
 
 @app.route('/index.html')
@@ -192,6 +202,9 @@ def index():
 # Logic for viewing another person's profile page
 @app.route('/profile/<string:username>', methods=["GET", "POST"])
 def otherProfile(username):
+    # Get the URL stored in mongo for their avatar
+    avi_loc = account_avatars.find_one({'name': username})
+    avi = avi_loc['avatar_name']
     # If it is someone's own profile, redirect them to their profile
     if 'username' in session:
         if session['username'] == username:
@@ -215,7 +228,7 @@ def otherProfile(username):
             i = i + 1
         return render_template('otherprofile.html', username=username, g1=games[0], g2=games[1], g3=games[2],
                                g4=games[3], g5=games[4], s1=scores[0], s2=scores[1], s3=scores[2], s4=scores[3],
-                               s5=scores[4], hiscore=hi_score)
+                               s5=scores[4], hiscore=hi_score, avatar=avi)
 
 @app.route('/signup.html', methods=["GET", "POST"])
 def signup():
@@ -236,6 +249,8 @@ def signup():
             accounts.insert({'name': username, 'password': hashed})
             preferences = [True, True, True, True, True]
             genre_preferences.insert_one({'name': username, 'preferences': preferences})
+            # Upon creation of a new account, create an entry for an avatar for them.
+            account_avatars.insert({'name': username, 'avatar_name': "default.jpg"})
             session['username'] = username
             return redirect('/')
         else:
@@ -304,6 +319,29 @@ def postPreferences(preferences):
     new_preferences = json.loads(preferences)
     genre_preferences.update_one({'name': session['username']}, {'$set': {'preferences': new_preferences}})
     return 'Preferences updated!'
+
+# This is all referenced from https://www.youtube.com/watch?v=DsgAuceHha4
+@app.route('/aviupload', methods=['POST'])
+def aviupload():
+    if 'username' in session:
+        if 'avatar' in request.files:
+            avatar = request.files['avatar']
+            # Check if the file is valid and only an image
+            if not avatar.filename.endswith(('.png', '.jpg', '.jpeg')):
+                return 'Not a valid filetype'
+            # Renaming the avatar and saving to mongo
+            avatar_name = session['username'] + '_' + avatar.filename
+            mongo.save_file(avatar_name, avatar)
+            # Replace current avatar with new one
+            account_avatars.update_one({'name': session['username']}, {'$set': {'avatar_name': avatar_name}})
+        return redirect('/profile.html')
+    return redirect('/')
+
+# Testing purposes: Direct link to file to verify it was uploaded
+# is also used as a route to DB to show off profile photo in HTML (it is the URL)
+@app.route('/file/<filename>')
+def showFile(filename):
+    return mongo.send_file(filename)
 
 # Referenced from 442 slides on Docker/Heroku deployment and live demo
 if __name__ == "__main__":
