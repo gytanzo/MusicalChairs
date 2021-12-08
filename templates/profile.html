@@ -1,5 +1,5 @@
 <!DOCTYPE html>>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
     <head>
         <title>MusicalChairs | {{ session.username }}'s profile</title>
         <link rel="stylesheet" href="../static/profile.css">
@@ -25,7 +25,20 @@
         <div class="stats_box"></div>
         <div class="statistics"></div>
             <span  class="statstext">Statistics</span>
-        <div class="scorebox"></div>
+        <div class="avatar_box">
+            <img width="200" height="200" src="/file/{{avatar}}">
+        </div>
+        <div class="avibuttons">
+        <form id="avatar_upload" method="POST" action="/aviupload" enctype="multipart/form-data">
+            <input class="avatarbtn" type="file" name="avatar" oninput="uploadAvi()">
+        </form>
+            <script type="text/javascript">
+                function uploadAvi() {
+                    const form = document.getElementById("avatar_upload");
+                    form.submit();
+                }
+            </script>
+        </div>
         <a href="/logout" style="text-decoration: none;">
         <div class="logbox"></div>
             <span class="edit_logtext">LOGOUT</span>

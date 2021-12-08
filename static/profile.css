@@ -273,7 +273,7 @@
 	font-size:72px;
 	letter-spacing:0;
 }
-.scorebox { 
+.avatar_box {
 	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius:500px;
 	background-color:rgba(196.00000351667404, 196.00000351667404, 196.00000351667404, 1);
@@ -290,7 +290,7 @@
 	height:97px;
 	position:absolute;
 	left:92px;
-	top:629px;
+	top:700px;
 }
 .edit_logtext { 
 	color:rgba(255, 255, 255, 1);
@@ -298,7 +298,7 @@
 	height:62px;
 	position:absolute;
 	left:89px;
-	top:647px;
+	top:718px;
 	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
@@ -526,4 +526,28 @@ body {
 	text-align:right;
 	font-size:42px;
 	letter-spacing:0;
+}
+
+/* Stealing a bit of Ben's CSS style to make the avatar upload button */
+/* Account Box Width: 674px, Height 785px positioned at left 34px, top 97px */
+
+.avibuttons {
+	position: absolute;
+	display: inline-block;
+	left: 198px;
+	top: 600px;
+}
+
+.avatarbtn {
+	background-color: #3498DB;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.avatarbtn:hover,
+.avatarbtn:focus {
+	background-color: #2980B9;
 }
