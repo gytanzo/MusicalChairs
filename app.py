@@ -246,7 +246,7 @@ def signup():
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
             accounts.insert({'name': username, 'password': hashed})
             # Upon creation of a new account, create an entry for an avatar for them.
-            account_avatars.insert({'name': username, 'avatar_name': "default.png"})
+            account_avatars.insert({'name': username, 'avatar_name': "default.jpg"})
             session['username'] = username
             return redirect('/')
         else:
