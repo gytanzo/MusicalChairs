@@ -78,6 +78,10 @@ def endofgame():
 def gameSelection():
     return render_template('gameselection.html')
 
+@app.route('/leaderboardselection.html')
+def leaderboardSelection():
+    return render_template('leaderboardselection.html')
+
 @app.route('/playgame.html')
 def gamePage():
     preferences = genre_preferences.find({'name': session['username']})[0]["preferences"]
