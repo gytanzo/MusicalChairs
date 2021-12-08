@@ -11,6 +11,7 @@ import os
 import sys
 import bcrypt
 import json
+import random
 
 app = Flask(__name__)
 
@@ -332,6 +333,14 @@ def aviupload():
             # Renaming the avatar and saving to mongo
             avatar_name = session['username'] + '_' + avatar.filename
             mongo.save_file(avatar_name, avatar)
+            # For some reason on Heroku, an md5 hash is NOT generated, causing crashes.
+            # For the sake of needing a hotfix, I will generate it and manually add it...
+            randHash = str(random.getrandbits(128))
+            imgDB = db.myFirstDatabase.fs.files
+            avi = imgDB.find({'filename': avatar_name})[0]
+            keys = avi.keys()
+            if 'md5' in keys:
+                imgDB.update_one({'filename': avatar_name}, {'$add': {'md5': randHash}})
             # Replace current avatar with new one
             account_avatars.update_one({'name': session['username']}, {'$set': {'avatar_name': avatar_name}})
         return redirect('/profile.html')
