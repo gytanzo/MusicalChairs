@@ -340,7 +340,7 @@ def aviupload():
             avi = imgDB.find({'filename': avatar_name})[0]
             keys = avi.keys()
             if 'md5' not in keys:
-                imgDB.update_one({'filename': avatar_name}, {'$add': {'md5': randHash}})
+                imgDB.update_one({'filename': avatar_name}, {'$set': {'md5': randHash}})
             # Replace current avatar with new one
             account_avatars.update_one({'name': session['username']}, {'$set': {'avatar_name': avatar_name}})
         return redirect('/profile.html')
