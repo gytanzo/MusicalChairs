@@ -40,7 +40,21 @@
     <div class="stats_box"></div>
     <div class="statistics"></div>
     <span class="statstext">Statistics</span>
-    <div class="scorebox"></div>
+    <div class="avatar_box">
+        <img width="200" height="200" src="/file/{{avatar}}">
+    </div>
+    <div class="avibuttons">
+    <form id="avatar_upload" method="POST" action="/aviupload" enctype="multipart/form-data">
+        <input id="avi" type="file" accept="image/*" name="avatar" oninput="uploadAvi()" style="display: none">
+    </form>
+        <label for="avi" class="avatarbtn">Change Avatar</label>
+        <script type="text/javascript">
+            function uploadAvi() {
+                const form = document.getElementById("avatar_upload");
+                form.submit();
+            }
+        </script>
+    </div>
     <a href="/logout" style="text-decoration: none;">
         <div class="logbox"></div>
         <span class="edit_logtext">LOGOUT</span>
