@@ -191,7 +191,8 @@ def profilePage():
         # This renders the profile.html and passes the past five games with their dates, plus the hi-score
         return render_template('profile.html', game_one=games[0], game_two=games[1], game_three=games[2], game_four=games[3], game_five=games[4],
                                score_one=scores[0], score_two=scores[1], score_three=scores[2], score_four=scores[3],
-                               score_five=scores[4], hi_score=hi_score, preferences=preferences, avatar=avi)
+                               score_five=scores[4], hi_score=hi_score,
+                               preferences=genre_preferences.find({'name': session['username']})[0]['preferences'], avatar=avi)
     return redirect('/')
 
 @app.route('/index.html')
@@ -247,7 +248,7 @@ def signup():
             # Use BCrypt to encrypt password, then insert into DB
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
-            accounts.insert({'name': username, 'password': hashed})
+            accounts.insert_one({'name': username, 'password': hashed})
             preferences = [True, True, True, True, True]
             genre_preferences.insert_one({'name': username, 'preferences': preferences})
             # Upon creation of a new account, create an entry for an avatar for them.
