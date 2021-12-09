@@ -26,14 +26,11 @@
 .e1_7 {
     background-color: rgba(196.00000351667404, 196.00000351667404, 196.00000351667404, 1);
     width: 1144px;
-    height: 738px;
+    height: 660px;
     position: absolute;
     left: 150px;
     top: 186px;
-    border-top-left-radius: 84px;
-    border-top-right-radius: 84px;
-    border-bottom-left-radius: 84px;
-    border-bottom-right-radius: 84px;
+    border-radius: 40px;
 }
 
 .e1_27 {
@@ -418,7 +415,7 @@
 	width:103px;
 	height:48px;
 	position:absolute;
-	left:1004px;
+	left:1021px;
 	top:228px;
 	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
@@ -431,7 +428,7 @@
 	width:130px;
 	height:48px;
 	position:absolute;
-	left:306px;
+	left:294px;
 	top:232px;
 	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
