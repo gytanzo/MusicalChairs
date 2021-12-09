@@ -13,36 +13,36 @@
               <p id="countdown" value="30"></p>
             </button>
         <div class="scorebox" style="float: right;">
-            <span id="questionsRemaining" class="questionsRemaining">1 / 10</span>
+            <span id="questionsRemaining" class="questionsRemaining">1</span>
             <br>
             <span id="score" class="score">0</span>
             <span id="answerKey"></span>
         </div>
     </div>
     <script>
-        window.onload = countdownTime('{{ preferences }}');
+        window.onload = endlessTimer('{{ preferences }}');
     </script>
     <div class="navbar">
         <a href="index.html" style="text-decoration: none;"><img src ="../static/images/homepage.png" height="17px" width="17px"></a>
         <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
     </div>
     <div class="main">
-        <button class="song_button song1" onclick="answerKey = pressedA(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
+        <button class="song_button song1" onclick="answerKey = endlesspressedA(answerKey, '{{ preferences }}'); answerKey = endlessTimer('{{ preferences }}');">
                 <span class="question_box">A.</span>
                 <span class="question_box" id="songname1"><span id="A"></span></span>
             </button>
         <br>
-        <button class="song_button song2" onclick="answerKey = pressedB(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
+        <button class="song_button song2" onclick="answerKey = endlesspressedB(answerKey, '{{ preferences }}'); answerKey = endlessTimer('{{ preferences }}');">
                 <span class="question_box">B.</span>
                 <span class="question_box" id="songname1"><span id="B"></span></span>
             </button>
         <br>
-        <button class="song_button song3" onclick="answerKey = pressedC(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
+        <button class="song_button song3" onclick="answerKey = endlesspressedC(answerKey, '{{ preferences }}'); answerKey = endlessTimer('{{ preferences }}');">
                 <span class="question_box">C.</span>
                 <span class="question_box" id="songname1"><span id="C"></span></span>
             </button>
         <br>
-        <button class="song_button song4" onclick="answerKey = pressedD(answerKey, '{{ preferences }}'); answerKey = countdownTime('{{ preferences }}');">
+        <button class="song_button song4" onclick="answerKey = endlesspressedD(answerKey, '{{ preferences }}'); answerKey = endlessTimer('{{ preferences }}');">
                 <span class="question_box">D.</span>
                 <span class="question_box" id="songname1"><span id="D"></span></span>
             </button>
@@ -52,7 +52,7 @@
         <script>
             let answerKey;
             window.onload = function() {
-                answerKey = setAnswers("{{ preferences }}");
+                answerKey = setAnswers('{{ preferences }}');
             }
         </script>
     </div>

@@ -65,7 +65,7 @@
 	position:absolute;
 	left:1121px;
 	top:19px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:40px;
 	letter-spacing:0;
@@ -77,7 +77,7 @@
 	position:absolute;
 	left:1181px;
 	top:28px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:24px;
 	letter-spacing:0;
@@ -155,7 +155,7 @@
 	position:absolute;
 	left:681px;
 	top:852px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:40px;
 	letter-spacing:0;
@@ -167,7 +167,7 @@
 	position:absolute;
 	left:614px;
 	top:667px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:40px;
 	letter-spacing:0;
@@ -207,7 +207,7 @@
 	position:absolute;
 	left:52px;
 	top:422px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:36px;
 	letter-spacing:0;
@@ -219,7 +219,7 @@
 	position:absolute;
 	left:89px;
 	top:532px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:36px;
 	letter-spacing:0;
@@ -240,20 +240,10 @@
 	position:absolute;
 	left:212px;
 	top:767px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
-}
-.spotlogo { 
-	width:90px;
-	height:90px;
-	position:absolute;
-	left:105px;
-	top:753px;
-	background-image:url(/images/spotifylogo.png);
-	background-repeat:no-repeat;
-	background-size:cover;
 }
 .stats_box { 
 	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -278,12 +268,12 @@
 	position:absolute;
 	left:818px;
 	top:116px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:72px;
 	letter-spacing:0;
 }
-.scorebox { 
+.avatar_box {
 	box-shadow:0px 4px 4px rgba(0, 0, 0, 0.25);
 	border-radius:500px;
 	background-color:rgba(196.00000351667404, 196.00000351667404, 196.00000351667404, 1);
@@ -300,7 +290,7 @@
 	height:97px;
 	position:absolute;
 	left:92px;
-	top:629px;
+	top:700px;
 }
 .edit_logtext { 
 	color:rgba(255, 255, 255, 1);
@@ -308,8 +298,8 @@
 	height:62px;
 	position:absolute;
 	left:89px;
-	top:647px;
-	font-family:Roboto;
+	top:718px;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -329,7 +319,7 @@
 	position:absolute;
 	left:807px;
 	top:249px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -341,7 +331,7 @@
 	position:absolute;
 	left:792px;
 	top:308px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -361,7 +351,7 @@
 	position:absolute;
 	left:829px;
 	top:402px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:center;
 	font-size:48px;
 	letter-spacing:0;
@@ -381,69 +371,100 @@
 	position:absolute;
 	left:788px;
 	top:482px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
 	font-size:48px;
 	letter-spacing:0;
 }
+body { 
+    margin: 0; 
+    background-color: rgb(218, 218, 218);
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: rgb(90, 90, 90);
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    background: rgb(218, 218, 218);
+    color: black;
+}
+
+.main {
+    padding: 16px;
+    margin-top: 30px;
+}
 .e11_77 { 
 	color:rgba(0, 0, 0, 1);
-	width:172px;
+	width:600px;
 	height:80px;
 	position:absolute;
 	left:792px;
 	top:488px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_78 { 
 	color:rgba(0, 0, 0, 1);
-	width:172px;
+	width:600px;
 	height:80px;
 	position:absolute;
 	left:792px;
 	top:610px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_79 { 
 	color:rgba(0, 0, 0, 1);
-	width:172px;
+	width:600px;
 	height:80px;
 	position:absolute;
 	left:792px;
 	top:674px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_80 { 
 	color:rgba(0, 0, 0, 1);
-	width:172px;
+	width:600px;
 	height:80px;
 	position:absolute;
 	left:792px;
 	top:549px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_81 { 
 	color:rgba(0, 0, 0, 1);
-	width:172px;
+	width:600px;
 	height:80px;
 	position:absolute;
 	left:792px;
 	top:735px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:left;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_88 { 
@@ -453,9 +474,9 @@
 	position:absolute;
 	left:1144px;
 	top:488px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_89 { 
@@ -465,9 +486,9 @@
 	position:absolute;
 	left:1144px;
 	top:610px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_90 { 
@@ -477,9 +498,9 @@
 	position:absolute;
 	left:1144px;
 	top:674px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_91 { 
@@ -489,9 +510,9 @@
 	position:absolute;
 	left:1144px;
 	top:549px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
 }
 .e11_92 { 
@@ -501,8 +522,147 @@
 	position:absolute;
 	left:1144px;
 	top:735px;
-	font-family:Roboto;
+	font-family: Arial, Helvetica, sans-serif;
 	text-align:right;
-	font-size:48px;
+	font-size:42px;
 	letter-spacing:0;
+}
+
+/* Dropdown Button */
+
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+
+/* Dropdown button on hover & focus */
+
+.dropbtn:hover,
+.dropbtn:focus {
+    background-color: #2980B9;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+
+.dropdown {
+    position: absolute;
+    display: inline-block;
+    left: 290px;
+    top: 600px;
+}
+
+
+/* Dropdown Content (Hidden by Default) */
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+
+/* Links inside the dropdown */
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* Change color of dropdown links on hover */
+
+.dropdown-content a:hover {
+    background-color: #ddd
+}
+
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+
+.show {
+    display: block;
+}
+
+.tooltip {
+    position: absolute;
+    left: 450px;
+    top: 617px;
+    content: '?';
+    display: inline-block;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-align: center;
+    width: 1.8ex;
+    height: 1.8ex;
+    font-size: 1.4ex;
+    line-height: 1.8ex;
+    border-radius: 1.2ex;
+    margin-right: 4px;
+    padding: 1px;
+    color: #000;
+    background: white;
+    border: 2px solid #000;
+    text-decoration: none;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 110%;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+/* Stealing a bit of Ben's CSS style to make the avatar upload button */
+/* Account Box Width: 674px, Height 785px positioned at left 34px, top 97px */
+
+.avibuttons {
+	position: absolute;
+	display: inline-block;
+	left: 290px;
+	top: 525px;
+}
+
+.avatarbtn {
+	background-color: #3498DB;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.avatarbtn:hover,
+.avatarbtn:focus {
+	background-color: #2980B9;
 }

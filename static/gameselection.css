@@ -26,17 +26,10 @@ body {
     color: black;
 }
 
-.logo {
-    padding: 16px;
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-}
-
 .main {
     font-family: Arial, Helvetica, sans-serif;
     padding: 16px;
-    margin-top: 300px;
+    margin-top: 50px;
     text-align: center;
 }
 
@@ -45,52 +38,29 @@ body {
     font-size: 48px;
     margin: 0 auto;
     cursor: pointer;
+    display: inline-block;
     transition-duration: 0.4s;
     border-radius: 10px;
-    height: 200px;
-    width: 500px;
+    height: 80vh;
+    width: 35%;
 }
 
-.help_button {
-    background-color: rgb(0, 162, 255);
+.playgame_button {
+    background-color: rgba(0, 162, 255);
     color: white;
-    display: inline-block;
 }
 
-.help_button:hover {
+.playgame_button:hover {
     background-color: rgb(49, 179, 255);
     color: white;
 }
 
-.play_button {
+.endlessgame_button {
     background-color: rgba(0, 162, 255);
     color: white;
-    display: inline-block;
 }
 
-.play_button:hover {
-    background-color: rgb(49, 179, 255);
-    color: white;
-}
-
-.leaderboard_button {
-    background-color: rgba(0, 162, 255);
-    color: white;
-    display: inline-block;
-}
-
-.leaderboard_button:hover {
-    background-color: rgb(49, 179, 255);
-    color: white;
-}
-
-.search_button {
-    background-color: rgba(0, 162, 255);
-    color: white;
-    display: inline-block;
-}
-
-.search_button:hover {
+.endlessgame_button:hover {
     background-color: rgb(49, 179, 255);
     color: white;
 }

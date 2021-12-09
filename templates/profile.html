@@ -1,84 +1,172 @@
-<!DOCTYPE html>>
+<!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="../static/styles.css">
-        <style>
-            body { 
-                margin: 0; 
-                background-color: rgb(218, 218, 218);
-            }
 
-            .navbar {
-                overflow: hidden;
-                background-color: rgb(90, 90, 90);
-                position: fixed;
-                top: 0;
-                width: 100%;
-            }
+<head>
+    <title>MusicalChairs | {{ session.username }}'s profile</title>
+    <link rel="stylesheet" href="../static/profile.css">
+</head>
 
-            .navbar a {
-                float: left;
-                display: block;
-                color: #ffffff;
-                text-align: center;
-                padding: 14px 16px;
-                font-size: 17px;
-            }
-
-            .navbar a:hover {
-                background: rgb(218, 218, 218);
-                color: black;
-            }
-
-            .main {
-                padding: 16px;
-                margin-top: 30px;
-            }
-        </style>
-    </head>
-
-    <body>
-        <div class="navbar">
-            <a href="index.html" style="text-decoration: none;">Home</a>
-            <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
-        </div>
-        <div class="main"></div>
-        <div class="account_box"></div>
-        <div class="account_information_box"></div>
-            <span  class="account_info_text">Information</span>
-            <span  class="account_info_name">Account name:
-            <br>
-            {{session.username}}</span>
-            <!--<span  class="account_info_email">Account Email: SandyGamer@gmail.com</span> -->
-        <!-- To be Determined for usage. For now, we will just comment it out.-->
-        <!--<div class="linkbox"></div>
+<body>
+    <div class="navbar">
+        <a href="index.html" style="text-decoration: none;"><img src ="../static/images/homepage.png" height="17px" width="17px"></a>
+        <a href="profile.html" style="text-decoration: none; float: right;">Profile</a>
+    </div>
+    <div class="main"></div>
+    <div class="account_box"></div>
+    <div class="account_information_box"></div>
+    <span class="account_info_text">Information</span>
+    <span class="account_info_name">Account name:
+        <br>
+        {{session.username}}</span>
+    <!--<span  class="account_info_email">Account Email: SandyGamer@gmail.com</span> -->
+    <!-- To be Determined for usage. For now, we will just comment it out.-->
+    <!--<div class="linkbox"></div>
             <span  class="link_text">LINK ACCOUNT</span>
             -->
-        <div class="spotlogo"></div>
-        <div class="stats_box"></div>
-        <div class="statistics"></div>
-            <span  class="statstext">Statistics</span>
-        <div class="scorebox"></div>
-        <a href="/logout" style="text-decoration: none;">
+    <div class="dropdown">
+        <button onclick="dropdown()" class="dropbtn">Genre Selection</button>
+        <div id="dropbox" class="dropdown-content">
+            <a class="genre1"><input type="checkbox" id="Genre 1" class="chkbox1" />Trip Hop </a>
+            <a class="genre2"><input type="checkbox" id="Genre 2" class="chkbox2" />EDM </a>
+            <a class="genre3"><input type="checkbox" id="Genre 3" class="chkbox3" />Soft Pop </a>
+            <a class="genre4"><input type="checkbox" id="Genre 4" class="chkbox4" />Indie Rock </a>
+            <a class="genre5"><input type="checkbox" id="Genre 5" class="chkbox5" />Classic Rock </a>
+        </div>
+    </div>
+    <div class="tooltip">?
+        <span class="tooltiptext">This is the Genre Selection, where you can specify which types of songs you do and don't want to listen to. By default, there are five genres, with all five enabled. For each genre you disable, you receive a 10% points deduction, and you can disable a maximum of four genres.</span>
+    </div>
+    <div class="spotlogo"></div>
+    <div class="stats_box"></div>
+    <div class="statistics"></div>
+    <span class="statstext">Statistics</span>
+    <div class="avatar_box">
+        <img width="200" height="200" src="/file/{{avatar}}">
+    </div>
+    <div class="avibuttons">
+    <form id="avatar_upload" method="POST" action="/aviupload" enctype="multipart/form-data">
+        <input id="avi" type="file" accept="image/*" name="avatar" oninput="uploadAvi()" style="display: none">
+    </form>
+        <label for="avi" class="avatarbtn">Change Avatar</label>
+        <script type="text/javascript">
+            function uploadAvi() {
+                const form = document.getElementById("avatar_upload");
+                form.submit();
+            }
+        </script>
+    </div>
+    <a href="/logout" style="text-decoration: none;">
         <div class="logbox"></div>
-            <span class="edit_logtext">LOGOUT</span>
-        </a>
-        <div class="matchbox"></div>
-            <span  class="hiscore_text">Highest Score:</span>
-            <span  class="hiscore">10</span>
-        <div class="matchtext"></div>
-            <span  class="match_text">Match History</span>
-        <div class="prevscores"></div>
-        <span  class="e11_77">Game 1</span>
-        <span  class="e11_78">Game 3</span>
-        <span  class="e11_79">Game 4</span>
-        <span  class="e11_80">Game 2</span>
-        <span  class="e11_81">Game 5</span>
-        <span  class="e11_88">10</span>
-        <span  class="e11_89">8</span>
-        <span  class="e11_90">7</span>
-        <span  class="e11_91">9</span>
-        <span  class="e11_92">6</span>
-    </body>
-    
+        <span class="edit_logtext">LOGOUT</span>
+    </a>
+    <div class="matchbox"></div>
+    <span class="hiscore_text">Highest Score:</span>
+    <span class="hiscore">{{ hi_score }}</span>
+    <div class="matchtext"></div>
+    <span class="match_text">Match History</span>
+    <div class="prevscores"></div>
+    <span class="e11_77">{{ game_one }}</span>
+    <span class="e11_78">{{ game_three }}</span>
+    <span class="e11_79">{{ game_four }}</span>
+    <span class="e11_80">{{ game_two }}</span>
+    <span class="e11_81">{{ game_five }}</span>
+    <span class="e11_88">{{ score_one }}</span>
+    <span class="e11_89">{{ score_three }}</span>
+    <span class="e11_90">{{ score_four }}</span>
+    <span class="e11_91">{{ score_two }}</span>
+    <span class="e11_92">{{ score_five }}</span>
+</body>
+
+<script>
+    /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
+    function dropdown() {
+        document.getElementById("dropbox").classList.toggle("show");
+    }
+
+    function storeScore(score) {
+        var req = new XMLHttpRequest();
+        score = JSON.stringify(score)
+        if (req.readyState === XMLHttpRequest.DONE) {
+            if (req.status === 200) {
+                console.log(req.responseText)
+            } else { console.log("There was an error posting your score") }
+        }
+        req.open('POST', '/store/' + score, false);
+        req.send(score);
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        // Check to see if they are clicking the button or its contents
+        if (!event.target.matches('.dropbtn') // The button itself
+            &&
+            !event.target.matches('.chkbox1') && !event.target.matches('.chkbox2') && !event.target.matches('.chkbox3') && !event.target.matches('.chkbox4') && !event.target.matches('.chkbox5') // The checkboxes
+            &&
+            !event.target.matches('.genre1') && !event.target.matches('.genre2') && !event.target.matches('.genre3') && !event.target.matches('.genre4') && !event.target.matches('.genre5') // The area around the checkboxes
+        ) {
+            // If they disselect every genre, prevent them from exiting the dropdown 
+            if (!document.getElementById("Genre 1").checked && !document.getElementById("Genre 2").checked && !document.getElementById("Genre 3").checked && !document.getElementById("Genre 4").checked && !document.getElementById("Genre 5").checked) alert("You must have at least one genre selected.");
+            else {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+                // The options should be saved here. 
+                var preferences = []
+                preferences.push(document.getElementById("Genre 1").checked);
+                preferences.push(document.getElementById("Genre 2").checked);
+                preferences.push(document.getElementById("Genre 3").checked);
+                preferences.push(document.getElementById("Genre 4").checked);
+                preferences.push(document.getElementById("Genre 5").checked);
+
+                var req = new XMLHttpRequest();
+                preferences = JSON.stringify(preferences);
+                if (req.readyState === XMLHttpRequest.DONE) {
+                    if (req.status === 200) {
+                        console.log(req.responseText)
+                    } else { console.log("There was an error saving your genre preferences") }
+                }
+                req.open('POST', '/prefpush/' + preferences, false);
+                req.send(preferences)
+            }
+        }
+    }
+
+
+
+    /* In the future, I want this function to check the database and set the boxes 
+    /* depending on what genres the user has picked. It should also be able to send 
+    /* data *to* the database, in that if a user manually unselects a box it gets 
+    /* reflected in the databas itself. For now, the boxes are hardcoded. */
+
+    window.onload = setBoxes();
+
+    function setBoxes() {
+        // Parse the user's genre preferences
+        var preferences = "{{ preferences }}";
+        preferences = preferences.substring(1, preferences.length - 1); // Source: https://stackoverflow.com/questions/20196088/how-to-remove-the-first-and-the-last-character-of-a-string/20196342
+        preferences = preferences.replace(/\s+/g, ''); // Source: https://stackoverflow.com/questions/5963182/how-to-remove-spaces-from-a-string-using-javascript
+        preferences = preferences.split(","); 
+        preferences = preferences.map(boolFromStringOtherwiseNull)
+
+        // Set the user's boxes
+        document.getElementById("Genre 1").checked = preferences[0];
+        document.getElementById("Genre 2").checked = preferences[1];
+        document.getElementById("Genre 3").checked = preferences[2];
+        document.getElementById("Genre 4").checked = preferences[3];
+        document.getElementById("Genre 5").checked = preferences[4];
+    }
+
+    // Source: https://stackoverflow.com/questions/52947238/how-to-parse-true-and-false-strings-in-an-array-to-become-booleans
+    function boolFromStringOtherwiseNull(s) {
+        if (s == 'True' || s == 'true') return true
+        if (s == 'False' || s == 'false') return false
+        return null
+    }
+</script>
+
 </html>
