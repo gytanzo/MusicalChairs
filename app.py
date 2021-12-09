@@ -11,6 +11,7 @@ import os
 import sys
 import bcrypt
 import json
+import random
 
 app = Flask(__name__)
 
@@ -76,6 +77,10 @@ def endofgame():
 @app.route('/gameselection.html')
 def gameSelection():
     return render_template('gameselection.html')
+
+@app.route('/leaderboardselection.html')
+def leaderboardSelection():
+    return render_template('leaderboardselection.html')
 
 @app.route('/playgame.html')
 def gamePage():
@@ -190,7 +195,8 @@ def profilePage():
         # This renders the profile.html and passes the past five games with their dates, plus the hi-score
         return render_template('profile.html', game_one=games[0], game_two=games[1], game_three=games[2], game_four=games[3], game_five=games[4],
                                score_one=scores[0], score_two=scores[1], score_three=scores[2], score_four=scores[3],
-                               score_five=scores[4], hi_score=hi_score, preferences=preferences, avatar=avi)
+                               score_five=scores[4], hi_score=hi_score,
+                               preferences=genre_preferences.find({'name': session['username']})[0]['preferences'], avatar=avi)
     return redirect('/')
 
 @app.route('/index.html')
@@ -246,7 +252,7 @@ def signup():
             # Use BCrypt to encrypt password, then insert into DB
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
-            accounts.insert({'name': username, 'password': hashed})
+            accounts.insert_one({'name': username, 'password': hashed})
             preferences = [True, True, True, True, True]
             genre_preferences.insert_one({'name': username, 'preferences': preferences})
             # Upon creation of a new account, create an entry for an avatar for them.
@@ -332,6 +338,14 @@ def aviupload():
             # Renaming the avatar and saving to mongo
             avatar_name = session['username'] + '_' + avatar.filename
             mongo.save_file(avatar_name, avatar)
+            # For some reason on Heroku, an md5 hash is NOT generated, causing crashes.
+            # For the sake of needing a hotfix, I will generate it and manually add it...
+            randHash = str(random.getrandbits(128))
+            imgDB = db.myFirstDatabase.fs.files
+            avi = imgDB.find({'filename': avatar_name})[0]
+            keys = avi.keys()
+            if 'md5' not in keys:
+                imgDB.update_one({'filename': avatar_name}, {'$set': {'md5': randHash}})
             # Replace current avatar with new one
             account_avatars.update_one({'name': session['username']}, {'$set': {'avatar_name': avatar_name}})
         return redirect('/profile.html')
