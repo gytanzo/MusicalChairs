@@ -228,8 +228,8 @@ def otherProfile(username):
         colScores = db.accounts.scores
         has_played = colScores.find_one({'name': username})
         if has_played:
-            curScores = colScores.find_one({'name': username})[0]['scores']
-            hi_score = colScores.find_one({'name': username})[0]['highscore']['score']
+            curScores = colScores.find({'name': username})[0]['scores']
+            hi_score = colScores.find({'name': username})[0]['highscore']['score']
             i = 0
             while i < len(curScores) and i < 5:
                 games[i] = curScores[i].get('date')
