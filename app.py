@@ -224,14 +224,17 @@ def otherProfile(username):
         # Fetch account information (reused from profile page)
         scores = [0, 0, 0, 0, 0]
         games = ["None", "None", "None", "None", "None"]
+        hi_score = "Play a game!"
         colScores = db.accounts.scores
-        curScores = colScores.find({'name': username})[0]['scores']
-        hi_score = colScores.find({'name': username})[0]['highscore']['score']
-        i = 0
-        while i < len(curScores) and i < 5:
-            games[i] = curScores[i].get('date')
-            scores[i] = curScores[i].get('score')
-            i = i + 1
+        has_played = colScores.find_one({'name': username})
+        if has_played:
+            curScores = colScores.find_one({'name': username})[0]['scores']
+            hi_score = colScores.find_one({'name': username})[0]['highscore']['score']
+            i = 0
+            while i < len(curScores) and i < 5:
+                games[i] = curScores[i].get('date')
+                scores[i] = curScores[i].get('score')
+                i = i + 1
         return render_template('otherprofile.html', username=username, g1=games[0], g2=games[1], g3=games[2],
                                g4=games[3], g5=games[4], s1=scores[0], s2=scores[1], s3=scores[2], s4=scores[3],
                                s5=scores[4], hiscore=hi_score, avatar=avi)
@@ -256,7 +259,7 @@ def signup():
             preferences = [True, True, True, True, True]
             genre_preferences.insert_one({'name': username, 'preferences': preferences})
             # Upon creation of a new account, create an entry for an avatar for them.
-            account_avatars.insert({'name': username, 'avatar_name': "default.jpg"})
+            account_avatars.insert_one({'name': username, 'avatar_name': "default.jpg"})
             session['username'] = username
             return redirect('/')
         else:
@@ -283,9 +286,9 @@ def storeScore(score):
                      "highscore": {"date": curDate, "score": score}}
         colScores.insert_one(newScores)
     else:
-        curScores = colScores.find({'name': session['username']})[0]['scores']
+        curScores = colScores.find_one({'name': session['username']})[0]['scores']
         newScore = {"date": curDate, "score": score}
-        curScores.insert(0, newScore)
+        curScores.insert_one(0, newScore)
         # Update scores list with most recent game
         colScores.update_one({'name': session['username']}, {'$set': {'scores': curScores}})
         # Update high score if necessary
@@ -307,9 +310,9 @@ def storeEndlessScore(score):
                      "highscore": {"date": curDate, "score": score}}
         colScores.insert_one(newScores)
     else:
-        curScores = colScores.find({'name': session['username']})[0]['scores']
+        curScores = colScores.find_one({'name': session['username']})[0]['scores']
         newScore = {"date": curDate, "score": score}
-        curScores.insert(0, newScore)
+        curScores.insert_one(0, newScore)
         # Update scores list with most recent game
         colScores.update_one({'name': session['username']}, {'$set': {'scores': curScores}})
         # Update high score if necessary
